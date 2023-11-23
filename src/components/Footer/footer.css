@@ -1,0 +1,49 @@
+.footer h3{
+    color: #F765A3;
+}
+.footer{
+    box-sizing: border-box;
+    color: white;
+    padding: 1% 10% 1% 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, #0B1354, #08002c);
+}
+.footer .logo{
+    margin-top: 10%;
+}
+.about >*{
+    width: max-content;
+}
+.contact >*{
+    width: max-content;
+}
+.contact td{
+    padding-right: 10px;
+}
+@media screen and (max-width: 1100px) {
+    .footer{
+        padding: 1% 1% 1% 1%;
+    }
+}
+@media screen and  (max-width: 900px){
+    .contact{
+        display: none;
+    }
+}
+@media screen and (max-width: 850px) {
+    .footer .logo {
+        margin-top: 10%;
+    }
+}
+@media screen and (max-width: 780px) {
+    .footer{
+        flex-direction: column;
+        gap: 10px;
+        padding: 5% 5% 5% 3%;
+    }
+    .footer .logo{
+        margin-top: 0%;
+    }
+}

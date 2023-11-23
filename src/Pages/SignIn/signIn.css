@@ -97,3 +97,27 @@
     justify-content: center;
     gap: 10%;
 }
+@media screen and (max-width: 1100px) {
+    .new_to_codeLearn{
+        gap: 5%;
+    }
+    .left{
+        width: 30%;
+    }
+    .right{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 800px){
+    .left{
+        display: none;
+    }
+    .right{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 600px){
+    .signIn_container{
+        width: 90%;
+    }
+}

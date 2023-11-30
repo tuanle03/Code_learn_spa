@@ -1,0 +1,74 @@
+@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+.long_question{
+    display: inline;
+    margin: 3%;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+}
+.short_question{
+    display: none;
+}
+.search_bar{
+    padding-top: 4%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bar{
+    width: 40%;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+.search_bar{
+    width: 100%;
+}
+.bar i{
+    display: flex;
+    justify-content: center;
+    padding: 1% 1% 1% 1%;
+    background: linear-gradient(to right, #0B1354, #F765A3); 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+.bar .submit{
+    cursor: pointer;
+}
+.bar form{
+    width: 80%;
+}
+.bar input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+@media screen and (max-width: 800px) {
+    .bar{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .short_question{
+        display: inline;
+        margin: 3%;
+        color: white;
+        font-weight: bold;
+        font-size: 2em;
+    }
+    .long_question{
+        display: none;
+    }
+}

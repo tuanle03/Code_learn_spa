@@ -93,3 +93,28 @@
 .name >*{
     width: 49%;
 }
+
+@media screen and (max-width: 1100px) {
+    .already_have_an_account{
+        gap: 5%;
+    }
+    .left{
+        width: 30%;
+    }
+    .right{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 800px){
+    .left{
+        display: none;
+    }
+    .right{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 600px){
+    .signUp_container{
+        width: 90%;
+    }
+}

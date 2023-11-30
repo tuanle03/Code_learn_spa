@@ -1,4 +1,4 @@
-.SignIn{
+.SignUp{
     display: flex;
     box-sizing: border-box;
     width: 100%;
@@ -29,7 +29,7 @@
     padding-bottom: 20px;
     font-weight: bold;
 }
-.signIn_container{
+.signUp_container{
     box-sizing: border-box;
     width: 60%;
     background-color: #F9D1D1;
@@ -37,7 +37,7 @@
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.signIn_container >*{
+.signUp_container >*{
     margin: 10px 0 10px 0;
 }
 .input_container{
@@ -46,8 +46,6 @@
     background-color: white;
     display: flex;
     justify-content: center;
-    /* padding: 20px; */
-    margin: 10% 0 10% 0;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -60,23 +58,13 @@
     border-radius: 10px;
     padding: 0 5% 0 5%;
 }
-.option{
-    display: flex;
-    justify-content: space-between;
-}
-.checkbox_container label{
-    margin-left: 10px;
-}
-.checkbox_container input{
-    cursor: pointer;
-}
-.signIn_container a{
+.signUp_container a{
     text-decoration: underline;
     font-weight: bold;
     color: #0B1354;
     cursor: pointer;
 }
-.signIn_btn{
+.signUp_btn{
     width: 100%;
     padding: 5%;
     background-color: #0B1354;
@@ -87,13 +75,21 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
-.signIn_btn a{
+.signUp_btn a{
     color: white;
     text-decoration: none;
 }
-.new_to_codeLearn{
+.already_have_an_account{
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 10%;
+}
+.name {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+}
+.name >*{
+    width: 49%;
 }

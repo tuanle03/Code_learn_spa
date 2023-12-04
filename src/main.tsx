@@ -4,7 +4,8 @@ import { BrowserRouter as Router} from 'react-router-dom'
 import './App.css'
 // import Header from './components/Header/Header.tsx'
 // import Footer from './components/Footer/Footer.tsx'
-import Home from './assets/Pages/Home/Home.tsx'
+// import Home from './assets/Pages/Home/Home.tsx'
+import App from './App.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -12,7 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       {/* <Header signIn={false} avatar='' username=''/> */}
       {/* <Header signIn={true} avatar='src\assets\avatar.png' username='Bông Hub'/> */}
       {/* <Footer /> */}
-      <Home />
+      {/* <Home /> */}
+      <App />
     </Router>
   </React.StrictMode>,
 )

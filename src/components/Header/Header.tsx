@@ -64,9 +64,6 @@ const Header = ({ signIn, avatar, username }: HeaderProps) => {
               <Link className="signIn btn" to="/signin">
                 Sign in
               </Link>
-              <Link className="register btn" to="https://www.google.com">
-                Register
-              </Link>
             </>
           )}
         </div>

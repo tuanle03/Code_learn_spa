@@ -5,7 +5,8 @@ import './App.css'
 // import Header from './components/Header/Header.tsx'
 // import Footer from './components/Footer/Footer.tsx'
 // import Home from './assets/Pages/Home/Home.tsx'
-import App from './App.tsx'
+// import App from './App.tsx'
+import SignUp from './pages/SignUp/SignUp.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -14,7 +15,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       {/* <Header signIn={true} avatar='src\assets\avatar.png' username='Bông Hub'/> */}
       {/* <Footer /> */}
       {/* <Home /> */}
-      <App />
+      {/* <App /> */}
+      <SignUp />
     </Router>
   </React.StrictMode>,
 )

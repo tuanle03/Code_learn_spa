@@ -5,5 +5,4 @@ const Logo = () => {
     <Link to='/'><img src=".\src\assets\logo.png" alt="Logo unvailable" className="logo"/></Link>
   )
 }
-
 export default Logo;

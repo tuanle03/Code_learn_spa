@@ -76,7 +76,7 @@ const SignUp = () => {
           </button>
           <div className="already_have_an_account">
             <p>Already have an account?</p>
-            <Link to="/create_account">Sign in</Link>
+            <Link to="/sign_in">Sign in</Link>
           </div>
         </div>
       </div>

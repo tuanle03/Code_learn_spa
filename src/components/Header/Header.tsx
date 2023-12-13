@@ -61,7 +61,7 @@ const Header = ({ signIn, avatar, username }: HeaderProps) => {
               <a className="forum" href="https://www.google.com">
                 Forum
               </a>
-              <Link className="signIn btn" to="/signin">
+              <Link className="signIn btn" to="/sign_in">
                 Sign in
               </Link>
             </>

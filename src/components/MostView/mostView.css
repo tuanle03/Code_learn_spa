@@ -55,19 +55,19 @@
   .mobileBlogs img{
     width: 100%;
     height: 130px;
+    
+
   }
 
   .arrow{
-    width: 90%;
+    width: calc(100% - 40px);
     position: absolute;
-    /* top: 20%; */
     top: 20px;
     display: flex;
     justify-content: space-between;
   }
 
   .arrow >*{
-    /* background-color: red; */
     width: 30px;
     height: 130px;
     display: flex;

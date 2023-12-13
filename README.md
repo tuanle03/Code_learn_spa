@@ -49,10 +49,10 @@ We can use Vite because it's much faster and gives us small bundle sizes:
 
 The project is organized in the following structure:
 
-- Node modules folder is where all the third-party libraries are installed ![Node modules](https://drive.google.com/file/d/1p17C2rJcLABIs56CiXsbHiWzm_4ZwKxa/view?usp=drive_link)
-- Source folder is a source code of our application ![Source folder](https://drive.google.com/file/d/1X_bqgaObGmr5t5zAbuGxVqdzICtV2qs5/view?usp=drive_link)
-- We have a component called the App Component ![App Component](https://drive.google.com/file/d/17vb8zGW4-Ykz5PS5-S3uOEW-GlZ-L9I1/view?usp=drive_link)
-- The package.json file contains the information about the project ![Package JSON](https://drive.google.com/file/d/1GP0KGIGU1PpdaAQyZXyXnZD890HZHLIj/view?usp=drive_link)
+- Node modules folder is where all the third-party libraries are installed ![Node modules](https://photos.google.com/photo/AF1QipNCJVe0c0g_ZlGvib7NTgI98W_PhlWhlQLMEhWZ)
+- Source folder is a source code of our application ![Source folder](https://photos.google.com/photo/AF1QipNCdSwD6koSK7yRDwkPdUfR2FkHZeaD19saVpw7)
+- We have a component called the App Component ![App Component](https://photos.google.com/photo/AF1QipNujmTt7sNpOP_bCBVK4gxVD3jJxDGF6kYtCpie)
+- The package.json file contains the information about the project ![Package JSON](https://photos.google.com/photo/AF1QipNNqiulJd7YRJtaFgKGwFocF_mnVyfAV2Tuooxw)
 - Typescript Configurationfile is a bunch of settings for telling typescript compiler how to compile our code to JavaScript ![Typescript](https://drive.google.com/file/d/1OCbe-vNSjsXqqKa7uUxtXUVopuyMuqjM/view?usp=drive_link)
 - Configuration file for Vite  ![Vite](https://drive.google.com/file/d/1V7d0_mJS-C6Usoq8mifBwIPDg15qldgc/view?usp=drive_link)
 
@@ -90,7 +90,7 @@ Start by creating a new file for your component in the `src/components` director
 
 ## Demo
 - The codebase demonstrates best practices in React and TypeScript, showcasing the elegant implementation of the Article component.
-![Web Demo Code]https://drive.google.com/file/d/1vIcUZCQiuCSQuUJUOMNQyaPpWgiWJHVv/view?usp=drive_link)
+![Web Demo Code](https://drive.google.com/file/d/1vIcUZCQiuCSQuUJUOMNQyaPpWgiWJHVv/view?usp=drive_link)
 - Experience the CodeLearn web application live! To run the application locally, use the command npm run dev to execute the main.tsx file for testing the code. After running the command, access the website to see the CodeLearn web application in action.
 ![Web Demo](https://drive.google.com/file/d/1DxxiKrEHaRlL39atr1dSmg2OPq4GmxKM/view?usp=drive_link)
 

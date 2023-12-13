@@ -15,12 +15,12 @@ CodeLearn is a web-based project that houses a rich repository of articles spann
 - **User-Friendly Interface:** Experience a visually appealing and intuitive user interface that ensures seamless navigation. The design is crafted to be both eye-catching and approachable, creating an environment that resonates with programmers of all levels.
 
 # Table of Contents
-* [Installation:](#installation)
-* [Usage:](#usage)
-* [Configuration:](#configuration)
-* [Documentation:](#documentation)
-* [Contact Information:](#contact-information)
-* [Demo or Screenshot:](#demo-or-screenshot)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Configuration](#configuration)
+* [Documentation](#documentation)
+* [Contact Information](#contact-information)
+* [Demo or Screenshot](#demo-or-screenshot)
 
 ## Installation
 Follow these steps to set up CodeLearn on your local machine:
@@ -97,6 +97,12 @@ Start by creating a new file for your component in the `src/components` director
 ## Contact Information
 
 Feel free to reach out to us if you have any questions or need assistance. We're here to help!
+
+### Lê Thanh Tuấn
+- **Email:** [21520518@gm.uit.edu.vn](mailto:21520518@gm.uit.edu.vn)
+
+### Phạm Thái Bảo
+- **Email:** [21520156@gm.uit.edu.vn](mailto:21520156@gm.uit.edu.vn)
 
 ### Lê Thị Huyền Trang
 - **Email:** [21522694@gm.uit.edu.vn](mailto:21522694@gm.uit.edu.vn)

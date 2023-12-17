@@ -5,6 +5,7 @@ import Home from "./Pages/Home/Home";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import SignUp from "./Pages/SignUp/SignUp";
 import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
+import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
         <Route path="/sign_in" element={<SignIn />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/create_account" element={<SignUp />} />
-        <Route path="/change_profile" element={<ChangeProfile/>} />
+        <Route path="/profile" element={<ChangeProfile/>} />
+        <Route path="/change_avatar" element={<UploadAvatar/>} />
       </Routes>
     </div>
   );

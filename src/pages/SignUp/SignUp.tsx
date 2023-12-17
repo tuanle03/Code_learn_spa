@@ -17,11 +17,11 @@ const SignUp = () => {
 
   return (
     <div className="SignUp">
-      <div className="left">
+      <div className="signUp_left">
         <Logo />
         <h3>Group 4</h3>
       </div>
-      <div className="right">
+      <div className="signUp_right">
         <h2>Sign up to CodeLearn</h2>
         <div className="signUp_container">
           <div className="name">

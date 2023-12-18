@@ -67,7 +67,7 @@ Start by creating a new file for your component in the `src/components` director
   5. Export:
   Makes the Article component available for other modules to use.
 
-  ![Article TSX](https://photos.app.goo.gl/5raoGmoWRSLZVMDq5)
+  ![Article TSX](https://drive.google.com/file/d/1vf-M1Ekkg4XYEG2_chXCYh2E3mcO62Ht/view?usp=sharing)
 
 - Main Components of Article.css:
   This CSS file is a text file that contains style rules for HTML elements. It is used to control the appearance of a web page, such as the size, color, and position of elements.

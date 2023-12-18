@@ -15,11 +15,11 @@ const SignIn: React.FC = () => {
 
   return (
     <div className="SignIn">
-      <div className="left">
+      <div className="signIn_left">
         <Logo />
         <h3>Group 4</h3>
       </div>
-      <div className="right">
+      <div className="signIn_right">
         <h2>Sign in to CodeLearn</h2>
         <div className="signIn_container">
           <div className="input_container">

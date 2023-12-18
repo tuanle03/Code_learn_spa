@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "../../../components/Header/Header";
+import Header from "../../../components/Header/Header2";
 import SortDropDown from "../../../components/SortDropDown/Sort";
 import LongBlog from "../../../components/LongBlog/Blog";
 import Footer from "../../../components/Footer/Footer";

@@ -67,7 +67,7 @@ Start by creating a new file for your component in the `src/components` director
   5. Export:
   Makes the Article component available for other modules to use.
 
-  ![Article TSX](https://drive.google.com/file/d/1vf-M1Ekkg4XYEG2_chXCYh2E3mcO62Ht/view?usp=sharing)
+  ![Article TSX](img-fe/art-tsx.png)
 
 - Main Components of Article.css:
   This CSS file is a text file that contains style rules for HTML elements. It is used to control the appearance of a web page, such as the size, color, and position of elements.
@@ -75,7 +75,7 @@ Start by creating a new file for your component in the `src/components` director
   **Selectors:** These are rules that specify which HTML elements the style rules apply to.
   **Declarations:** These are rules that define the properties of the HTML elements.
   
-  ![Article CSS](https://photos.app.goo.gl/mxGQuqh4YrpawEkv5)
+  ![Article CSS](img-fe/art-css.png)
 
 ## Project Structure
 
@@ -83,37 +83,37 @@ The project is organized in the following structure:
 
 - Node modules folder is where all the third-party libraries are installed
 
-![Node modules](https://photos.app.goo.gl/bsPsAYEg8ioaVXyCA)
+![Node modules](img-fe/modules.png)
 
 - Source folder is a source code of our application
 
-![Source folder](https://photos.app.goo.gl/qBSFB1bmiZeBsxa87)
+![Source folder](img-fe/src.png)
 
 - We have a component called the App Component
 
-![App Component](https://photos.app.goo.gl/85RH9DXmvWdxnQzk7)
+![App Component](img-fe/app-components.png)
 
 - The package.json file contains the information about the project
 
-![Package JSON](https://photos.app.goo.gl/pJt2zcCcJewJayED9)
+![Package JSON](img-fe/package_json.png)
 
 - Typescript Configurationfile is a bunch of settings for telling typescript compiler how to compile our code to JavaScript
 
-![Typescript](https://photos.app.goo.gl/B5UBBL7b75urQsJm8)
+![Typescript](img-fe/typescript.png)
 
 - Configuration file for Vite
 
-![Vite](https://photos.app.goo.gl/FKK7Qmqy1Vs2X48j8)
+![Vite](img-fe/vite-config.png)
 
 ## Demo
 
 - The codebase demonstrates best practices in React and TypeScript, showcasing the elegant implementation of the Article component.
 
-![Web Demo Code](https://photos.app.goo.gl/pKHNaMsTk3iZJmbc9)
+![Web Demo Code](img-fe/demo-webpage-code.png)
 
 - Experience the CodeLearn web application live! To run the application locally, use the command npm run dev to execute the main.tsx file for testing the code. After running the command, access the website to see the CodeLearn web application in action.
 
-![Web Demo](https://photos.app.goo.gl/kLZ2DPmh6ebaBeHG9)
+![Web Demo](img-fe/demo-webpage.png)
 
 
 ## Contact Information

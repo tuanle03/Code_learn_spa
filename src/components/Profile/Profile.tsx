@@ -26,17 +26,28 @@ const Profile: React.FC<ProfileProps> = ({
   const [editedEmail, setEditedEmail] = useState(email);
   const [editedPassword, setEditedPassword] = useState(password);
 
+  const [changePassword, setChangePassword] = useState("hiddenPassword pass");
+  const showPassword = () =>{
+    setChangePassword(isEditing ? "hiddenPassword pass" : "password pass");
+    console.log(changePassword);
+  }
+
   const handleEditClick = () => {
     setIsEditing(false);
-
+    showPassword();
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setValue: React.Dispatch<React.SetStateAction<string>>
   ) => {
+    if (isEditing) setValue(e.target.value);
+  };
+
+  const editInfo = () => {
+    console.log("Editting...");
     setIsEditing(true);
-    setValue(e.target.value);
+    showPassword();
   };
 
   return (
@@ -44,7 +55,10 @@ const Profile: React.FC<ProfileProps> = ({
       <h2>Your profile</h2>
       <div className="profile_container">
         <div className="profile_left">
-          <h3>Information</h3>
+          <div className="info">
+            <h3>Information</h3>
+            <img src="src\assets\editing.png" alt="" onClick={editInfo} />
+          </div>
           <div className="name">
             <div className="input_container">
               <input
@@ -52,6 +66,7 @@ const Profile: React.FC<ProfileProps> = ({
                 type="text"
                 id="firstName"
                 value={editedFirstName}
+                readOnly={!isEditing}
                 onChange={(e) => handleChange(e, setEditedFirstName)}
               />
             </div>
@@ -61,6 +76,7 @@ const Profile: React.FC<ProfileProps> = ({
                 type="text"
                 id="lastName"
                 value={editedLastName}
+                readOnly={!isEditing}
                 onChange={(e) => handleChange(e, setEditedLastName)}
               />
             </div>
@@ -72,6 +88,7 @@ const Profile: React.FC<ProfileProps> = ({
               type="text"
               id="username"
               value={editedUserName}
+              readOnly={!isEditing}
               onChange={(e) => handleChange(e, setEditedUserName)}
             />
           </div>
@@ -82,27 +99,47 @@ const Profile: React.FC<ProfileProps> = ({
               type="text"
               id="email"
               value={editedEmail}
+              readOnly={!isEditing}
               onChange={(e) => handleChange(e, setEditedEmail)}
             />
           </div>
-          <div className="Password">
+          <div className={changePassword}>
             <input
               className="input_container"
-              placeholder="Password"
+              placeholder="Old password"
               type="password"
-              id="password"
-              value={editedPassword}
+              id="Password"
+              onChange={(e) => handleChange(e, setEditedPassword)}
+            />
+            <input
+              className="input_container"
+              placeholder="New password"
+              type="password"
+              id="Password"
+              onChange={(e) => handleChange(e, setEditedPassword)}
+            />
+            <input
+              className="input_container"
+              placeholder="Confirm password"
+              type="password"
+              id="Password"
               onChange={(e) => handleChange(e, setEditedPassword)}
             />
           </div>
-          <button className="edit" onClick={handleEditClick} disabled={!isEditing}>
+          <button
+            className="edit"
+            onClick={handleEditClick}
+            disabled={!isEditing}
+          >
             Save
           </button>
         </div>
         <div className="profile_right">
           <h3>Avatar</h3>
           <img className="avatar" src={avatar} alt="" />
-          <button><Link to='/change_avatar'>Edit</Link></button>
+          <button>
+            <Link to="/change_avatar">Edit</Link>
+          </button>
         </div>
       </div>
     </div>

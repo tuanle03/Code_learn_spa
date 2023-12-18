@@ -6,6 +6,7 @@ import Search from "../../components/Search/Search";
 import MostView from "../../components/MostView/MostView";
 import './home.css'
 import Header from "../../components/Header/Header";
+import ChatGPT from "../../components/chatGPT/ChatGPT";
 <link
   rel="stylesheet"
   href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
@@ -35,7 +36,7 @@ const Home = () => {
   return (
     <div className="Home">
       <div className="Top">
-        <Header signIn={true} username="Channie" avatar="https://scontent.fhan3-4.fna.fbcdn.net/v/t39.30808-6/369732690_1677239186083823_1493575485246765486_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeF2yKeSvdGeEUNYkv-4WWCYAXhDjOvILeYBeEOM68gt5qjGn53Q9KdPUjiugkoLphz1n1AmMkNo38mg3FWgljVA&_nc_ohc=aKRIntF9qdUAX_3QOfv&_nc_ht=scontent.fhan3-4.fna&oh=00_AfBCsvIRqKMMcoODRBwiTYt5vB7OAb4swNm7yqxuRyIgLA&oe=657EF470" />
+        <Header role="" signIn={true} username="Channie" avatar="https://scontent.fhan3-4.fna.fbcdn.net/v/t39.30808-6/369732690_1677239186083823_1493575485246765486_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeF2yKeSvdGeEUNYkv-4WWCYAXhDjOvILeYBeEOM68gt5qjGn53Q9KdPUjiugkoLphz1n1AmMkNo38mg3FWgljVA&_nc_ohc=aKRIntF9qdUAX_3QOfv&_nc_ht=scontent.fhan3-4.fna&oh=00_AfBCsvIRqKMMcoODRBwiTYt5vB7OAb4swNm7yqxuRyIgLA&oe=657EF470" />
         <Search />
         <MostView blogs={exampleBlogs} />
         <SortDropDown />

@@ -60,7 +60,7 @@
     cursor: pointer;
 }
 .edit:disabled{
-    background-color: #0b1354bc;
+    background-color: #D9D9D9;
     cursor: auto;
 }
 .profile_right{
@@ -86,4 +86,24 @@
     font-weight: bold;
     background-color: #F9D1D1;
     cursor: pointer;
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+.info img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.hiddenPassword{
+    display: none;
+}
+.password{
+    display: block;
+    padding: 0 !important;
+    
+}
+.password >*{
+    margin: 20px 0 20px 0;
 }

@@ -7,9 +7,10 @@ interface HeaderProps {
   signIn: boolean;
   avatar: string;
   username: string;
+  role: string;
 }
 
-function Account({ signIn, avatar, username }: HeaderProps) {
+function Account({ signIn, avatar, username, role}: HeaderProps) {
   const [setting, setSetting] = useState("hiddenSetting set");
   const showSetting = () =>{
     setSetting(setting === "setting set" ? "hiddenSetting set" : "setting set");
@@ -49,7 +50,7 @@ function Account({ signIn, avatar, username }: HeaderProps) {
   }
 }
 
-const Header = ({ signIn, avatar, username }: HeaderProps) => {
+const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
   const [active, setActive] = useState("menu");
   const navToggle = () => {
     setActive(active === "hiddenMenu" ? "menu" : "hiddenMenu");
@@ -69,7 +70,7 @@ const Header = ({ signIn, avatar, username }: HeaderProps) => {
         <div className={active}>
           {signIn ? (
             <>
-              <Account signIn={signIn} avatar={avatar} username={username} />
+              <Account signIn={signIn} avatar={avatar} username={username} role={role}/>
               <a className="forum" href="https://www.google.com">
                 Forum
               </a>

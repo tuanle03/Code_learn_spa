@@ -1,0 +1,40 @@
+/* article.css */
+
+/* Style for the entire article container */
+.fullArticle {
+    width: 70%;
+    margin: 50px 50px 10px 70px;
+  }
+  
+  /* Style for the header section of the article */
+  .headArticle {
+    padding: 10px;
+    color: #0b1354;
+    border-bottom: solid 1px #f9d1d1;
+  }
+  
+  .author {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Style for the body section of the article */
+  .bodyArticle {
+    padding: 20px;
+    border-bottom: 1px solid #f9d1d1;
+  }
+
+  .bodyArticle img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .bodyArticle p {
+    height: auto;
+    line-height: 1.6;
+    color: #0b1354;
+    text-align: justify;
+  }
+  
+  /* Add more styles as needed */
+  

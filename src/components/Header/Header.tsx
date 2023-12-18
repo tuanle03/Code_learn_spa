@@ -7,29 +7,51 @@ interface HeaderProps {
   signIn: boolean;
   avatar: string;
   username: string;
+  role: string;
 }
 
-function Account({ signIn, avatar, username }: HeaderProps) {
+function Account({ signIn, avatar, username, role}: HeaderProps) {
+  const [setting, setSetting] = useState("hiddenSetting set");
+  const showSetting = () =>{
+    setSetting(setting === "setting set" ? "hiddenSetting set" : "setting set");
+    console.log(setting);
+  }
+
+  const SignOut = () =>{
+    console.log("Sign out");
+  }
+
   if (avatar) {
     return (
-      <Link to="/profile" className="account">
-        <img className="avatar" src={avatar} alt="" />
-        <p className="username">{username}</p>
-      </Link>
+      <div className="account">
+        <button onClick={showSetting} className="accountBtn">
+          <img className="avatar" src={avatar} alt="" />
+          <p className="username">{username}</p>
+        </button>
+        <span className={setting}>
+            <Link to="/profile">Profile</Link>
+            <a href="/" onClick={SignOut}>Sign out</a>
+        </span>
+      </div>
     );
   } else {
     return (
-      <Link to="/profile" className="account">
-        <img className="avatar" src="./src/assets/avatar.png" alt="" />
-        <p className="username">{username}</p>
-      </Link>
+      <div className="account">
+        <button onClick={showSetting} className="accountBtn">
+          <img className="avatar" src="./src/assets/avatar.png" alt="" />
+          <p className="username">{username}</p>
+        </button>
+        <span className={setting}>
+            <Link to="/profile">Profile</Link>
+            <a href="/" onClick={SignOut}>Sign out</a>
+        </span>
+      </div>
     );
   }
 }
 
-const Header = ({ signIn, avatar, username }: HeaderProps) => {
+const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
   const [active, setActive] = useState("menu");
-
   const navToggle = () => {
     setActive(active === "hiddenMenu" ? "menu" : "hiddenMenu");
     console.log(active);
@@ -48,12 +70,9 @@ const Header = ({ signIn, avatar, username }: HeaderProps) => {
         <div className={active}>
           {signIn ? (
             <>
-              <Account signIn={signIn} avatar={avatar} username={username} />
+              <Account signIn={signIn} avatar={avatar} username={username} role={role}/>
               <a className="forum" href="https://www.google.com">
                 Forum
-              </a>
-              <a className="signOut btn" href="#">
-                Sign out
               </a>
             </>
           ) : (
@@ -61,7 +80,7 @@ const Header = ({ signIn, avatar, username }: HeaderProps) => {
               <a className="forum" href="https://www.google.com">
                 Forum
               </a>
-              <Link className="signIn btn" to="/signin">
+              <Link className="signIn btn" to="/sign_in">
                 Sign in
               </Link>
             </>

@@ -10,11 +10,11 @@ const ForgotPassword = () => {
   };
   return (
     <div className="Forgot">
-      <div className="left">
+      <div className="forgot_left">
         <Logo />
         <h3>Group 4</h3>
       </div>
-      <div className="right">
+      <div className="forgot_right">
         <div className="forgot_container">
           <h2>Forgot password</h2>
           <p>Please enter the email you use to sign in.</p>

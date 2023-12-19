@@ -11,7 +11,7 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY: string = "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";
+const API_KEY: string = "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";
 
 interface ChatMessage {
   message: string;
@@ -20,6 +20,10 @@ interface ChatMessage {
 }
 
 function ChatGPT(): ReactElement {
+  const [chat, setChat] = useState("hiddenChat")
+  const showChat = () =>{
+    setChat(chat === 'hiddenChat' ? 'chat' : 'hiddenChat');
+  }
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       message: "Hello, I'm ChatGPT! Ask me anything!",
@@ -43,70 +47,83 @@ function ChatGPT(): ReactElement {
     await processMessageToChatGPT(newMessages);
   };
 
-  async function processMessageToChatGPT(chatMessages: ChatMessage[]): Promise<void> {
-
+  async function processMessageToChatGPT(
+    chatMessages: ChatMessage[]
+  ): Promise<void> {
     let apiMessages = chatMessages.map((messageObject) => {
-        let role = "";
-        if (messageObject.sender === "ChatGPT") {
-            role = "assistant";
-        } else {
-            role = "user";
-        }
-        return { role, content: messageObject.message };
+      let role = "";
+      if (messageObject.sender === "ChatGPT") {
+        role = "assistant";
+      } else {
+        role = "user";
+      }
+      return { role, content: messageObject.message };
     });
 
-    // Get the request body set up with the model we plan to use
-    // and the messages which we formatted above. We add a system message in the front to
-    // determine how we want chatGPT to act.
     const apiRequestBody = {
-        model: "gpt-3.5-turbo",
-        messages: [
-            { role: "system", content: "Explain things like you're talking to a software professional with 2 years of experience." },
-            ...apiMessages,
-        ],
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Explain things like you're talking to a software professional with 2 years of experience.",
+        },
+        ...apiMessages,
+      ],
     };
 
     await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            Authorization: "Bearer " + API_KEY,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(apiRequestBody),
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiRequestBody),
     })
-        .then((data) => data.json())
-        .then((data) => {
-            console.log(data);
-            setMessages([
-                ...chatMessages,
-                {
-                    message: data.choices[0].message.content,
-                    sender: "ChatGPT",
-                },
-            ]);
-            setIsTyping(false);
-        })
-        .catch((error) => {
-            console.error("Error processing message to ChatGPT:", error);
-            setIsTyping(false);
-        });
-}
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        setMessages([
+          ...chatMessages,
+          {
+            message: data.choices[0].message.content,
+            sender: "ChatGPT",
+          },
+        ]);
+        setIsTyping(false);
+      })
+      .catch((error) => {
+        console.error("Error processing message to ChatGPT:", error);
+        setIsTyping(false);
+      });
+  }
 
-
-  const [msgType, setMsgType] = useState<MessageType>("text"); 
+  const [msgType, setMsgType] = useState<MessageType>("text");
 
   const messageType = (sender: string): MessageType => {
     return sender === "user" ? "text" : "custom";
   };
-  
-  const direction = (sender: string) =>{
-    return sender === "user" ? 'incoming': 'outgoing';
+
+  const direction = (sender: string) => {
+    return sender === "user" ? "incoming" : "outgoing";
   };
 
   return (
     <div className="App">
-      <div style={{ position: "relative", height: "350px", width: "300px", bottom:0, right:0 }}>
-        <MainContainer>
+      <div
+        style={{
+          position: "fixed",
+          minWidth: "100px",
+          bottom: 0,
+          right: 0,
+        }}
+      >
+        
+      <div className="chatHeader">
+        <div className="chatGPT" onClick={showChat}>Chat GPT</div>
+        {(chat==='chat') && <button className="closeChat" onClick={showChat} >x</button>}
+      </div>
+        <MainContainer id={chat}>
           <ChatContainer>
             <MessageList
               scrollBehavior="smooth"
@@ -118,7 +135,15 @@ function ChatGPT(): ReactElement {
             >
               {messages.map((message, i) => {
                 return (
-                  <Message model={{direction: (message.sender === "user") ? "outgoing" : "incoming" , position:'normal'}}  key={i} type={messageType(message.sender)}>
+                  <Message
+                    model={{
+                      direction:
+                        message.sender === "user" ? "outgoing" : "incoming",
+                      position: "normal",
+                    }}
+                    key={i}
+                    type={messageType(message.sender)}
+                  >
                     <Message.TextContent>{message.message}</Message.TextContent>
                   </Message>
                 );

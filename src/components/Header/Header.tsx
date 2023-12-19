@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../Logo";
 import "./header.css";
 
@@ -7,10 +7,10 @@ interface HeaderProps {
   signIn: boolean;
   avatar: string;
   username: string;
-  role: string;
 }
 
-function Account({ signIn, avatar, username, role}: HeaderProps) {
+function Account({ avatar, username}: HeaderProps) {
+  
   const [setting, setSetting] = useState("hiddenSetting set");
   const showSetting = () =>{
     setSetting(setting === "setting set" ? "hiddenSetting set" : "setting set");
@@ -50,7 +50,24 @@ function Account({ signIn, avatar, username, role}: HeaderProps) {
   }
 }
 
-const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
+const Header = () => {
+  const [signIn, setSignIn] = useState(false);
+  const [avatar, setAvatar] = useState("");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    fetch('your-api-endpoint')
+      .then((response) => response.json())
+      .then((data) => {
+        setSignIn(data.signIn);
+        setAvatar(data.avatar);
+        setUsername(data.username);
+      })
+      .catch((error) => {
+        console.error('Error fetching Header data:', error);
+      });
+  }, []);
+  
   const [active, setActive] = useState("menu");
   const navToggle = () => {
     setActive(active === "hiddenMenu" ? "menu" : "hiddenMenu");
@@ -70,7 +87,7 @@ const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
         <div className={active}>
           {signIn ? (
             <>
-              <Account signIn={signIn} avatar={avatar} username={username} role={role}/>
+              <Account signIn={signIn} avatar={avatar} username={username}/>
               <a className="forum" href="https://www.google.com">
                 Forum
               </a>

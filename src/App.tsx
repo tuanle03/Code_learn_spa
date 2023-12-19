@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import SignIn from "./Pages/SignIn/SignIn";
 import Home from "./Pages/Home/Home";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
@@ -18,7 +18,8 @@ const App = () => {
         <Route path="/create_account" element={<SignUp />} />
         <Route path="/profile" element={<ChangeProfile/>} />
         <Route path="/change_avatar" element={<UploadAvatar/>} />
-        <Route path="/chatgpt" element={<ChatGPT />} />
+        {/* <Route path="/new_blog" element */}
+        <Route path="*" element={<Navigate to ="/" />}/>
       </Routes>
     </div>
   );

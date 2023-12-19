@@ -1,23 +1,3 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -55,18 +35,52 @@
   color: #0B1354 !important;
 }
 .cs-message-input__content-editor{
+  background-color: white !important;
 }
 .cs-message-input__content-editor-wrapper{
+  background-color: white !important;
 }
-.cs-main-container{
+.cs-main-container{ 
   border: none !important;
 }
 .cs-message-input{
   border: none !important;
-  padding: 10px 20px 20px 20px !important;
+  padding: 10px 20px 10px 20px !important;
   background-color: #F9D1D1 !important;
 }
 .cs-message-input__tools{
-  flex-direction: row !important;
-  align-items: end !important;
+  display: block !important;
+}
+.cs-button--send{
+  cursor: pointer !important;
+}
+.cs-message-list-typing-indicator{
+  color: #0B1354;
+  height: 200px;
+}
+.chatHeader{
+  color: #F9D1D1;
+  background-color: #0B1354;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.closeChat{
+  color: #F9D1D1;
+  background-color: #0B1354;
+  border: none;
+  font-size: larger;
+  cursor: pointer;
+}
+.cs-typing-indicator__text{
+  color: #0B1354 !important;
+}
+#hiddenChat{
+  display: none;
+}
+#chat{
+  border-radius: 5px;
 }

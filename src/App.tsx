@@ -7,6 +7,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import SignUp from "./Pages/SignUp/SignUp";
 import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
 import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
+import Answer from "./components/Answer/Answer";
 import Question from "./components/Question/Question";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/create_account" element={<SignUp />} />
         <Route path="/profile" element={<ChangeProfile />} />
         <Route path="/change_avatar" element={<UploadAvatar />} />
+        <Route path="/answer" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
 
         <Route path="*" element={<Navigate to="/" />} />

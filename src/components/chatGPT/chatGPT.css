@@ -67,6 +67,49 @@
   background-color: #F9D1D1 !important;
 }
 .cs-message-input__tools{
-  flex-direction: row !important;
-  align-items: end !important;
+  display: block !important;
+}
+.cs-button--send{
+  cursor: pointer !important;
+}
+.cs-message-list-typing-indicator{
+  color: #0B1354;
+  height: 200px;
+}
+.chatHeader{
+  color: #F9D1D1;
+  background-color: #0B1354;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.closeChat{
+  color: #F9D1D1;
+  background-color: #0B1354;
+  border: none;
+  font-size: larger;
+  cursor: pointer;
+}
+.cs-typing-indicator__text{
+  color: #0B1354 !important;
+}
+#hiddenChat{
+  display: none;
+}
+#chat{
+  border-radius: 5px;
+}
+.app{
+  width: 300px;
+  height: 300px;
+}
+.hiddenApp{
+  width: auto;
+  height: auto;
+}
+.cs-message-list{
+  height: 209px !important;
 }

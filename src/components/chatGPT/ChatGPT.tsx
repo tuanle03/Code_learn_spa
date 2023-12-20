@@ -11,7 +11,7 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY: string = "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";
+const API_KEY: string = "ask-chang-chang";
 
 interface ChatMessage {
   message: string;
@@ -20,6 +20,15 @@ interface ChatMessage {
 }
 
 function ChatGPT(): ReactElement {
+
+  const [chat, setChat] = useState("hiddenChat");
+  const [app, setApp] = useState("hiddenApp");
+
+  const showChat = () => {
+    setChat(chat === "hiddenChat" ? "chat" : "hiddenChat");
+    setApp(app === "hiddenApp" ? "app" : "hiddenApp");
+  };
+  
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       message: "Hello, I'm ChatGPT! Ask me anything!",
@@ -104,9 +113,27 @@ function ChatGPT(): ReactElement {
   };
 
   return (
-    <div className="App">
-      <div style={{ position: "relative", height: "350px", width: "300px", bottom:0, right:0 }}>
-        <MainContainer>
+    <div
+      className={app}
+      style={{
+        position: "fixed",
+        minWidth: "100px",
+        bottom: 0,
+        right: 0,
+      }}
+    >
+      <div>
+        <div className="chatHeader">
+          <div className="chatGPT" onClick={showChat}>
+            Chat GPT
+          </div>
+          {chat === "chat" && (
+            <button className="closeChat" onClick={showChat}>
+              x
+            </button>
+          )}
+        </div>
+        <MainContainer id={chat}>
           <ChatContainer>
             <MessageList
               scrollBehavior="smooth"

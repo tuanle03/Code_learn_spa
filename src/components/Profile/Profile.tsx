@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./profile.css";
 import { Link } from "react-router-dom";
 
@@ -11,37 +11,155 @@ interface ProfileProps {
   avatar: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({
-  firstName,
-  lastName,
-  username,
-  email,
-  password,
-  avatar,
-}) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedFirstName, setEditedFirstName] = useState(firstName);
-  const [editedLastName, setEditedLastName] = useState(lastName);
-  const [editedUserName, setEditedUserName] = useState(username);
-  const [editedEmail, setEditedEmail] = useState(email);
-  const [editedPassword, setEditedPassword] = useState(password);
+const Profile = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [avatar, setAvatar] = useState('./src/assets/avatar.png');
+  const [token, setToken] = useState('');
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const cookies = document.cookie;
+        const cookieArray = cookies.split('; ');
+        const tokenCookie = cookieArray.find(cookie => cookie.startsWith('Token='));
+  
+        if (tokenCookie) {
+          const tokenValue = tokenCookie.split('=')[1];
+          setToken(tokenValue);
+  
+          const response = await fetch("https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/users", {
+            method: "GET",
+            headers: {
+              'Accept': "application/json",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              "Token": tokenValue
+            },
+          });
 
+          console.log(response.status);
+  
+          if (response.ok) {
+            const data = await response.json();
+            if(data.success){
+            setFirstName(data.user.first_name);
+            setLastName(data.user.last_name);
+            setUsername(data.user.name); // Assuming 'name' is a combination of first and last name
+            setEmail(data.user.email);
+            setAvatar(data.user.avatar_url || "./src/assets/avatar.png");
+            } else{
+              alert("Error. Try again");
+            }
+          } else {
+            console.error("Error fetching Header data:", response.statusText);
+          }
+        }
+      } catch (error) {
+        console.error("Error during fetch:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedFields, setEditedFields] = useState({
+    firstName,
+    lastName,
+    username,
+    email,
+    password: "",
+    newPassword: "",
+    confirmPassword: "",
+    avatar,
+  });
+
+  // const [editedFirstName, setEditedFirstName] = useState(firstName);
+  // const [editedLastName, setEditedLastName] = useState(lastName);
+  // const [editedUserName, setEditedUserName] = useState(username);
+  // const [editedEmail, setEditedEmail] = useState(email);
+  // const [editedPassword, setEditedPassword] = useState(password);
   const [changePassword, setChangePassword] = useState("hiddenPassword pass");
+
+  useEffect(() => {
+    if (!isEditing) {
+      setEditedFields({
+        firstName,
+        lastName,
+        username,
+        email,
+        password: "",
+        newPassword: "",
+        confirmPassword: "",
+        avatar
+      });
+      setChangePassword("hiddenPassword pass");
+    }
+  }, [isEditing, firstName, lastName, username, email]);
+
   const showPassword = () =>{
     setChangePassword(isEditing ? "hiddenPassword pass" : "password pass");
     console.log(changePassword);
   }
 
-  const handleEditClick = () => {
+
+  const handleEditClick = async() => {
     setIsEditing(false);
     showPassword();
+    try {
+      const cookies = document.cookie;
+        const cookieArray = cookies.split('; ');
+        const tokenCookie = cookieArray.find(cookie => cookie.startsWith('Token='));
+  
+        if (tokenCookie) {
+          const tokenValue = tokenCookie.split('=')[1];
+          setToken(tokenValue);
+        
+      const formData = new URLSearchParams();
+      formData.append("last_name", editedFields.lastName);
+      formData.append("first_name", editedFields.firstName);
+      formData.append("avatar_url", editedFields.avatar);
+      formData.append("old_password", editedFields.password);
+      formData.append("new_password", editedFields.newPassword);
+      formData.append("new_password_confirmation", editedFields.confirmPassword);
+
+      const response = await fetch(
+        "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/users",
+        {
+          method: "PUT",
+          headers: {
+            'Accept': "application/json",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              "Token": tokenValue
+          },
+          body: formData.toString(),
+        }
+      );
+      console.log("Response Status Code:", response.status);
+      if (response.ok) {
+        console.log("Update successful");
+      } else {
+        console.error("Update failed:", response.statusText);
+        alert("Update failed");
+      }
+    }
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+      alert("Error. Try again");
+    }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    field: string
   ) => {
-    if (isEditing) setValue(e.target.value);
+    if (isEditing) setEditedFields((prevFields) => ({
+      ...prevFields,
+      [field]: e.target.value,
+    }));
   };
 
   const editInfo = () => {
@@ -65,9 +183,9 @@ const Profile: React.FC<ProfileProps> = ({
                 placeholder="First name"
                 type="text"
                 id="firstName"
-                value={editedFirstName}
+                value={editedFields.firstName}
                 readOnly={!isEditing}
-                onChange={(e) => handleChange(e, setEditedFirstName)}
+                onChange={(e) => handleChange(e, "firstName")}
               />
             </div>
             <div className="input_container">
@@ -75,9 +193,9 @@ const Profile: React.FC<ProfileProps> = ({
                 placeholder="Last name"
                 type="text"
                 id="lastName"
-                value={editedLastName}
+                value={editedFields.lastName}
                 readOnly={!isEditing}
-                onChange={(e) => handleChange(e, setEditedLastName)}
+                onChange={(e) => handleChange(e, "lastName")}
               />
             </div>
           </div>
@@ -87,9 +205,9 @@ const Profile: React.FC<ProfileProps> = ({
               placeholder="Username"
               type="text"
               id="username"
-              value={editedUserName}
+              value={editedFields.username}
               readOnly={!isEditing}
-              onChange={(e) => handleChange(e, setEditedUserName)}
+              onChange={(e) => handleChange(e, "username")}
             />
           </div>
           <div className="email">
@@ -98,9 +216,9 @@ const Profile: React.FC<ProfileProps> = ({
               placeholder="Your email"
               type="text"
               id="email"
-              value={editedEmail}
+              value={editedFields.email}
               readOnly={!isEditing}
-              onChange={(e) => handleChange(e, setEditedEmail)}
+              onChange={(e) => handleChange(e, "email")}
             />
           </div>
           <div className={changePassword}>
@@ -109,21 +227,21 @@ const Profile: React.FC<ProfileProps> = ({
               placeholder="Old password"
               type="password"
               id="Password"
-              onChange={(e) => handleChange(e, setEditedPassword)}
+              onChange={(e) => handleChange(e, "password")}
             />
             <input
               className="input_container"
               placeholder="New password"
               type="password"
               id="Password"
-              onChange={(e) => handleChange(e, setEditedPassword)}
+              onChange={(e) => handleChange(e, "newPassword")}
             />
             <input
               className="input_container"
               placeholder="Confirm password"
               type="password"
               id="Password"
-              onChange={(e) => handleChange(e, setEditedPassword)}
+              onChange={(e) => handleChange(e, "confirmPassword")}
             />
           </div>
           <button

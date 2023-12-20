@@ -11,97 +11,128 @@ interface HeaderProps {
 function Account({ avatar, username }: HeaderProps) {
   const [setting, setSetting] = useState("hiddenSetting set");
   const showSetting = () => {
-    setSetting(setting === "setting set" ? "hiddenSetting set" : "setting set");
+    setSetting((prevSetting) =>
+      prevSetting === "setting set" ? "hiddenSetting set" : "setting set"
+    );
   };
   const nav = useNavigate();
+  const [token, setToken] = useState('');
 
   const SignOut = async () => {
     try {
-      const response = await fetch(
-        "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/registrations",
-        {
-          method: "DELETE",
-          headers: {
-            'Accept': "application/json",
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-            'Token': document.cookie,
-          },
-        }
+      const cookies = document.cookie;
+      const cookieArray = cookies.split('; ');
+      const tokenCookie = cookieArray.find((cookie) =>
+        cookie.startsWith('Token=')
       );
+      document.cookie = `Token=`;
 
-      if (response.ok) {
-        document.cookie = "";
-        console.log("Log-out successful");
-        nav("/");
-      } else {
-        console.error("Log-out failed:", response.statusText);
+      if (tokenCookie) {
+        const tokenValue = tokenCookie.split('=')[1];
+        setToken(tokenValue);
+
+        const response = await fetch(
+          "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/sessions/sign_out",
+          {
+            method: "DELETE",
+            headers: {
+              'Accept': "application/json",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              'Cache-Control': "no-cache, no-store, must-revalidate",
+              'Token': tokenValue,
+            },
+          }
+        );
+
+        console.log(response.status);
+
+        if (response.ok) {
+          console.log("Log-out successful");
+          nav("/"); // Redirect to the home page after successful logout
+        } else {
+          console.error("Log-out failed:", response.statusText);
+        }
       }
     } catch (error) {
-      console.error("Error during sign-up:", error);
-      alert("Đã xảy ra lỗi. Vui lòng thử lại sau");
+      console.error("Error during sign-out:", error);
+      alert("Error. Try again");
     }
   };
 
-  if (avatar) {
-    return (
-      <div className="account">
-        <button onClick={showSetting} className="accountBtn">
-          <img className="avatar" src={avatar} alt="" />
-          <p className="username">{username}</p>
-        </button>
-        <span className={setting}>
-          <Link to="/profile">Profile</Link>
-          <a href="/" onClick={SignOut}>
-            Sign out
-          </a>
-        </span>
-      </div>
-    );
-  } else {
-    return (
-      <div className="account">
-        <button onClick={showSetting} className="accountBtn">
-          <img className="avatar" src="./src/assets/avatar.png" alt="" />
-          <p className="username">{username}</p>
-        </button>
-        <span className={setting}>
-          <Link to="/profile">Profile</Link>
-          <a href="/" onClick={SignOut}>
-            Sign out
-          </a>
-        </span>
-      </div>
-    );
-  }
+  return (
+    <div className="account">
+      <button onClick={showSetting} className="accountBtn">
+        <img className="avatar" src={avatar} alt="" />
+        <p className="username">{username}</p>
+      </button>
+      <span className={setting}>
+        <Link to="/profile">Profile</Link>
+        <a href="/" onClick={SignOut}>
+          Sign out
+        </a>
+      </span>
+    </div>
+  );
 }
 
 const Header = () => {
   const [signIn, setSignIn] = useState(false);
   const [avatar, setAvatar] = useState("");
   const [username, setUsername] = useState("");
+  const [token, setToken] = useState('');
 
   useEffect(() => {
-    fetch("", {
-      method: "GET",
-      headers: {
-        'Accept': "application/json",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSignIn(data.signIn);
-        setAvatar(data.avatar);
-        setUsername(data.username);
-      })
-      .catch((error) => {
-        console.error("Error fetching Header data:", error);
-      });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const cookies = document.cookie;
+        const cookieArray = cookies.split('; ');
+        const tokenCookie = cookieArray.find((cookie) =>
+          cookie.startsWith('Token=')
+        );
+
+        if (tokenCookie) {
+          const tokenValue = tokenCookie.split('=')[1];
+          setToken(tokenValue);
+
+          const response = await fetch(
+            "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/users",
+            {
+              method: "GET",
+              headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                'Cache-Control': "no-cache, no-store, must-revalidate",
+                "Token": tokenValue
+              },
+            }
+          );
+
+          // console.log(response.status);
+
+          if (response.ok) {
+            const data = await response.json();
+            setSignIn(data.success);
+            if (data.success) {
+              setAvatar(data.user.avatar_url || "");
+              setUsername(data.user.last_name || "");
+            }
+          } else {
+            console.error("Error fetching Header data:", response.statusText);
+          }
+        }
+      } catch (error) {
+        console.error("Error during fetch:", error);
+      }
+    };
+
+    fetchData();
+  }, [token]); // Add token to the dependency array
 
   const [active, setActive] = useState("menu");
   const navToggle = () => {
-    setActive(active === "hiddenMenu" ? "menu" : "hiddenMenu");
+    setActive((prevActive) =>
+      prevActive === "hiddenMenu" ? "menu" : "hiddenMenu"
+    );
   };
 
   return (

@@ -33,7 +33,6 @@ const SignIn: React.FC = () => {
         const responseData = await response.json();
         const token = responseData.token;
         console.log(token);
-        // document.cookie = 'Token=${token};';
         document.cookie = `Token=${token}`;
         nav("/");
       } else {

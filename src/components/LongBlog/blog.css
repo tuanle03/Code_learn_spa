@@ -30,10 +30,12 @@
 }
 
 .LongBlog .title{
+  width: calc(100% - 80px);
   font-size: 1.5em;
 }
 
 .LongBlog .date{
+  width: 80px;
   font-style: italic;
   /* color: #F765A3; */
 }

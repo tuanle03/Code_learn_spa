@@ -1,20 +1,27 @@
-import React, { useState } from 'react'
-import './sort.css'
+import React, { useState } from 'react';
+import './sort.css';
 
-const SortDropDown = () => {
+interface SortDropDownProps {
+  onSortChange: (option: string) => void;
+}
+
+const SortDropDown: React.FC<SortDropDownProps> = ({ onSortChange }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(event.target.value);
-  }
-    return (
-      <div className='container'>
-        <select className='SortDropDown' value={selectedOption} onChange={handleSortChange}>
-          <option value="mostView">Most View</option>
-          <option value="latestPost">Latest Post</option>
-        </select>
-      </div>
-    );
-}
+    const option = event.target.value;
+    setSelectedOption(option);
+    onSortChange(option); // Call the callback with the selected option
+  };
+
+  return (
+    <div className='container'>
+      <select className='SortDropDown' value={selectedOption} onChange={handleSortChange}>
+        <option value="mostView">Most View</option>
+        <option value="latestPost">Latest Post</option>
+      </select>
+    </div>
+  );
+};
 
 export default SortDropDown;

@@ -23,6 +23,8 @@ const App = () => {
         <Route path="/answer" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
 
+       
+        {/* <Route path="/article/:id" element={<Article />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

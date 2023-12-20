@@ -13,27 +13,22 @@ const sampleProps: RateButtonProps = {
 
 const RateButton: React.FC<RateButtonProps> = ({ initialRating }) => {
   const [rating, setRating] = useState(initialRating);
-  const [changeAmount, setChangeAmount] = useState(0);
 
   const handleRate = (value: number) => {
-    setChangeAmount(value);
     setRating(rating + value);
   };
 
   return (
     <div className="rateButtonContainer">
       <div className="ratingDisplay">Rating: {rating}</div>
-      {changeAmount !== 0 && (
-        <div className="changeAmountDisplay">
-          {changeAmount > 0 ? `+${changeAmount}` : changeAmount}
-        </div>
-      )}
-      <button className="rateUpBtn" onClick={() => handleRate(1)}>
-        👍🏻
-      </button>
-      <button className="rateDownBtn" onClick={() => handleRate(-1)}>
-        👎🏻
-      </button>
+      <div className=" btnUpDown">
+        <button className="rateUpBtn twoBtn" onClick={() => handleRate(1)}>
+          👍🏿
+        </button>
+        <button className="rateDownBtn twoBtn" onClick={() => handleRate(-1)}>
+          👎🏿
+        </button>
+      </div>
     </div>
   );
 };

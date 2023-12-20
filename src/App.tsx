@@ -9,7 +9,6 @@ import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
 import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
 import Answer from "./components/Answer/Answer";
 import Question from "./components/Question/Question";
-import Admin from "./Pages/Admin/Admin";
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
         <Route path="/create_account" element={<SignUp />} />
         <Route path="/profile" element={<ChangeProfile />} />
         <Route path="/change_avatar" element={<UploadAvatar />} />
-        <Route path="/answer" element={<Answer />} />
+        <Route path="/answer/:id" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
 

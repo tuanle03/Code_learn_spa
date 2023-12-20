@@ -7,6 +7,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
 import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
 import Answer from "./components/Answer/Answer";
+import Question from "./components/Question/Question";
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/profile" element={<ChangeProfile />} />
         <Route path="/change_avatar" element={<UploadAvatar />} />
         <Route path="/answer" element={<Answer />} />
-        {/* <Route path="/new_blog" element */}
+        <Route path="/ask" element={<Question />} />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

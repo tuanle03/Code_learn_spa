@@ -1,0 +1,47 @@
+.question-label-container{
+    padding: 3% 10%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.question-label-container h3{
+    color: #0B1354;
+    padding: 10px 0;
+}
+.question-label-container input{
+    width: 100%;
+    border: 1px solid #F9D1D1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    padding: 10px;
+}
+.quill{
+    border: 1px solid #F9D1D1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.ql-toolbar{
+    border: 1px solid #F9D1D1 !important;
+}
+.question-label-container .button{
+    display: flex;
+    margin: 5% 15%;
+    justify-content: space-between;
+}
+.post{
+    width: 200px;
+    background-color: #0B1354;
+    color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+.close{
+    height: 35px;
+}
+.ql-editor{
+    min-height: 150px;
+}

@@ -1,8 +1,7 @@
-// Article.tsx
-import "./article.css";
-import React from "react";
+// ArticleContainer.tsx (or any other appropriate component/container)
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-// Define the interface for the article data
 interface ArticleData {
   title: string;
   author: string;
@@ -11,35 +10,52 @@ interface ArticleData {
   imageUrl: string;
 }
 
-// Create a sample data set
-const sampleData: ArticleData = {
-  title: "Sample Paper Title",
-  author: "Sample Author",
-  publicationDate: "January 1, 2023",
-  content:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  imageUrl:
-    "https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
-};
+const ArticleContainer: React.FC = () => {
+  const discussionId = useParams();
+  console.log("Discussion ID:", discussionId);
 
-const Article: React.FC = () => {
-  // Use the sample data within the component
+  const [articleData, setArticleData] = useState<ArticleData | null>(null);
+
+  useEffect(() => {
+    const fetchArticleData = async () => {
+      try {
+        const response = await fetch(
+          `https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/posts/${discussionId}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch article data");
+        }
+
+        const data: ArticleData = await response.json();
+        setArticleData(data);
+      } catch (error) {
+        console.error("Error fetching article data:", error);
+      }
+    };
+
+    fetchArticleData();
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
+
   return (
-    <div className="fullArticle">
-      <div className="headArticle">
-        <h1>{sampleData.title}</h1>
-        <div className="author publicationDate">
-          <p>By {sampleData.author}</p>
-          <p>{sampleData.publicationDate}</p>
-        </div>
-      </div>
+    <>
+      {articleData && (
+        <div className="fullArticle">
+          <div className="headArticle">
+            <h1>{articleData.title}</h1>
+            <div className="author publicationDate">
+              <p>By {articleData.author}</p>
+              <p>{articleData.publicationDate}</p>
+            </div>
+          </div>
 
-      <div className="bodyArticle">
-        <p>{sampleData.content}</p>
-        <img className="img" src={sampleData.imageUrl} alt="image" />
-      </div>
-    </div>
+          <div className="bodyArticle">
+            <p>{articleData.content}</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
-export default Article;
+export default ArticleContainer;

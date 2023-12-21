@@ -1,6 +1,8 @@
 // ForumQues.tsx
 import "./ForumQues.css";
 import React from "react";
+import RateButton from "../RateButton/RateButton";
+import AddQuesBtn from "../AddQuesBtn/AddQuesBtn";
 
 // Define the interface for the ForumQues data
 interface ForumQuesProps {
@@ -14,7 +16,7 @@ interface ForumQuesProps {
 
 // Create a sample data set
 const sampleProps: ForumQuesProps = {
-  title: "Sample Paper Title",
+  title: "Sample Question",
   author: "Sample Author",
   publicationDate: "January 1, 2023",
   view: 0,
@@ -29,8 +31,10 @@ const ForumQues: React.FC = () => {
   return (
     <div className="fullForumQues">
       <div className="headForumQues">
-        <h1>{sampleProps.title}</h1>
-        <div className="author publicationDate">
+        <h1>
+          {sampleProps.title} <AddQuesBtn />
+        </h1>
+        <div className="authorAndPublicationDate">
           <p>By {sampleProps.author}</p>
           <p>{sampleProps.publicationDate}</p>
           <p>View {sampleProps.view}</p>
@@ -38,8 +42,13 @@ const ForumQues: React.FC = () => {
       </div>
 
       <div className="bodyForumQues">
-        <p>{sampleProps.content}</p>
-        <img className="img" src={sampleProps.imageUrl} alt="image" />
+        <div className="rateBtn">
+          <RateButton />
+        </div>
+        <div className="bodyForumQuesContent">
+          <p>{sampleProps.content}</p>
+          <img className="img" src={sampleProps.imageUrl} alt="image" />
+        </div>
       </div>
     </div>
   );

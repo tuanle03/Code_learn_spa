@@ -1,0 +1,13 @@
+.searchBar {
+    margin: 0px 0px 100px 0px;
+}
+
+.SortAndAskQues {
+    display: flex;
+    margin-right: 200px;
+}
+
+.askQues {
+    display: flex;
+    align-items: end;
+}

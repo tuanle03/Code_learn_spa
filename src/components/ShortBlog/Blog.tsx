@@ -1,31 +1,33 @@
 import React from 'react'
 import './blog.css'
 
-interface blogProps{
+interface BlogReview{
+  id: number;
   title: string;
-  date: Date;
-  script: string;
-  img: string
+  body: string;
+  img: string;
+  date: string; 
+  url: string;
 }
 
-const ShortBlog = ({title, date, script, img}: blogProps) => {
+const ShortBlog = ({title, body, url, date, img}: BlogReview) => {
   const maxLength = 50;
   let text = '';
-  if (script.length < maxLength){
-    text = script;
+  if (body.length < maxLength){
+    text = body;
   } else{
-    text = script.substring(0, maxLength);
+    text = body.substring(0, maxLength);
   }
   return (
-    <a className='ShortBlog'>
+    <a className='ShortBlog' href={url}>
       <img className='img' src={img} alt="" />
       <div className='content'>
         <div className='header'>
           <h3 className='title'>{title}</h3>
-          <p className='date'>{date.toDateString()}</p>
+          <p className='date'>{date}</p>
         </div>
         <p className='text'>{text}...</p>
-        <a className='see_more' href={script}>See more</a>
+        <div className='see_more'>See more</div>
       </div>
     </a>
   )

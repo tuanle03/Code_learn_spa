@@ -20,9 +20,12 @@ const App = () => {
         <Route path="/create_account" element={<SignUp />} />
         <Route path="/profile" element={<ChangeProfile />} />
         <Route path="/change_avatar" element={<UploadAvatar />} />
-        <Route path="/answer" element={<Answer />} />
+        <Route path="/answer/:id" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
 
+       
+        {/* <Route path="/article/:id" element={<Article />} /> */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

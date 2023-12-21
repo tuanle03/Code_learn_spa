@@ -1,60 +1,138 @@
-import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import "./header.css";
 
 interface HeaderProps {
-  signIn: boolean;
   avatar: string;
   username: string;
-  role: string;
 }
 
-function Account({ signIn, avatar, username, role}: HeaderProps) {
+function Account({ avatar, username }: HeaderProps) {
   const [setting, setSetting] = useState("hiddenSetting set");
-  const showSetting = () =>{
-    setSetting(setting === "setting set" ? "hiddenSetting set" : "setting set");
-    console.log(setting);
-  }
-
-  const SignOut = () =>{
-    console.log("Sign out");
-  }
-
-  if (avatar) {
-    return (
-      <div className="account">
-        <button onClick={showSetting} className="accountBtn">
-          <img className="avatar" src={avatar} alt="" />
-          <p className="username">{username}</p>
-        </button>
-        <span className={setting}>
-            <Link to="/profile">Profile</Link>
-            <a href="/" onClick={SignOut}>Sign out</a>
-        </span>
-      </div>
+  const showSetting = () => {
+    setSetting((prevSetting) =>
+      prevSetting === "setting set" ? "hiddenSetting set" : "setting set"
     );
-  } else {
-    return (
-      <div className="account">
-        <button onClick={showSetting} className="accountBtn">
-          <img className="avatar" src="./src/assets/avatar.png" alt="" />
-          <p className="username">{username}</p>
-        </button>
-        <span className={setting}>
-            <Link to="/profile">Profile</Link>
-            <a href="/" onClick={SignOut}>Sign out</a>
-        </span>
-      </div>
-    );
-  }
+  };
+  const nav = useNavigate();
+  const [token, setToken] = useState('');
+
+  const SignOut = async () => {
+    try {
+      const cookies = document.cookie;
+      const cookieArray = cookies.split('; ');
+      const tokenCookie = cookieArray.find((cookie) =>
+        cookie.startsWith('Token=')
+      );
+      document.cookie = `Token=`;
+
+      if (tokenCookie) {
+        const tokenValue = tokenCookie.split('=')[1];
+        setToken(tokenValue);
+
+        const response = await fetch(
+          "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/sessions/sign_out",
+          {
+            method: "DELETE",
+            headers: {
+              'Accept': "application/json",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              'Cache-Control': "no-cache, no-store, must-revalidate",
+              'Token': tokenValue,
+            },
+          }
+        );
+
+        console.log(response.status);
+
+        if (response.ok) {
+          console.log("Log-out successful");
+          nav("/"); // Redirect to the home page after successful logout
+        } else {
+          console.error("Log-out failed:", response.statusText);
+        }
+      }
+    } catch (error) {
+      console.error("Error during sign-out:", error);
+      alert("Error. Try again");
+    }
+  };
+
+  return (
+    <div className="account">
+      <button onClick={showSetting} className="accountBtn">
+        <img className="avatar" src={avatar} alt="" />
+        <p className="username">{username}</p>
+      </button>
+      <span className={setting}>
+        <Link to="/profile">Profile</Link>
+        <a href="/" onClick={SignOut}>
+          Sign out
+        </a>
+      </span>
+    </div>
+  );
 }
 
-const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
+const Header = () => {
+  const [signIn, setSignIn] = useState(false);
+  const [avatar, setAvatar] = useState("");
+  const [username, setUsername] = useState("");
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const cookies = document.cookie;
+        const cookieArray = cookies.split('; ');
+        const tokenCookie = cookieArray.find((cookie) =>
+          cookie.startsWith('Token=')
+        );
+
+        if (tokenCookie) {
+          const tokenValue = tokenCookie.split('=')[1];
+          setToken(tokenValue);
+
+          const response = await fetch(
+            "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/users",
+            {
+              method: "GET",
+              headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                'Cache-Control': "no-cache, no-store, must-revalidate",
+                "Token": tokenValue
+              },
+            }
+          );
+
+          // console.log(response.status);
+
+          if (response.ok) {
+            const data = await response.json();
+            setSignIn(data.success);
+            if (data.success) {
+              setAvatar(data.user.avatar_url || "");
+              setUsername(data.user.last_name || "");
+            }
+          } else {
+            console.error("Error fetching Header data:", response.statusText);
+          }
+        }
+      } catch (error) {
+        console.error("Error during fetch:", error);
+      }
+    };
+
+    fetchData();
+  }, [token]); // Add token to the dependency array
+
   const [active, setActive] = useState("menu");
   const navToggle = () => {
-    setActive(active === "hiddenMenu" ? "menu" : "hiddenMenu");
-    console.log(active);
+    setActive((prevActive) =>
+      prevActive === "hiddenMenu" ? "menu" : "hiddenMenu"
+    );
   };
 
   return (
@@ -70,7 +148,7 @@ const Header = ({ signIn, avatar, username , role}: HeaderProps) => {
         <div className={active}>
           {signIn ? (
             <>
-              <Account signIn={signIn} avatar={avatar} username={username} role={role}/>
+              <Account avatar={avatar} username={username} />
               <a className="forum" href="https://www.google.com">
                 Forum
               </a>

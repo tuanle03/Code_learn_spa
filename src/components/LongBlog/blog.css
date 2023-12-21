@@ -4,7 +4,9 @@
   display: flex;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.LongBlog .text{
+  color: #0B1354;
+}
 .LongBlog img{
   width: 35%;
   height: auto;
@@ -28,10 +30,12 @@
 }
 
 .LongBlog .title{
+  width: calc(100% - 80px);
   font-size: 1.5em;
 }
 
 .LongBlog .date{
+  width: 80px;
   font-style: italic;
   /* color: #F765A3; */
 }

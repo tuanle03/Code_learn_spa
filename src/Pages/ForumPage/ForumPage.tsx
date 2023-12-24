@@ -41,7 +41,7 @@ const ForumPage: React.FC = () => {
 
   return (
     <>
-      <Header signIn={false} avatar="" username="" />
+      <Header />
       <ForumQues />
       <ForumAns
         ForumAns="Sample answer text"

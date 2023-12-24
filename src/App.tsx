@@ -9,6 +9,8 @@ import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
 import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
 import Answer from "./components/Answer/Answer";
 import Question from "./components/Question/Question";
+import PaperPage from "./Pages/PaperPage/PaperPage";
+import ForumPage from "./Pages/ForumPage/ForumPage";
 
 const App = () => {
   return (
@@ -22,10 +24,11 @@ const App = () => {
         <Route path="/change_avatar" element={<UploadAvatar />} />
         <Route path="/answer/:id" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
+        <Route path="/forum" element={<ForumPage />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
 
        
-        {/* <Route path="/article/:id" element={<Article />} /> */}
+        <Route path="/article/:id" element={<PaperPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

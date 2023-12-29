@@ -34,7 +34,7 @@
   .bodyForumQuesContent{
     border-bottom: 1px solid #f9d1d1;
     border-top: solid 1px #f9d1d1;
-    padding: 20px 10px 20px 10px;
+    margin: 20px 10px 20px 100px;
   }
 
   .bodyForumQuesContent img {

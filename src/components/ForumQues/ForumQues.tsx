@@ -25,7 +25,7 @@ const sampleProps: ForumQuesProps = {
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   imageUrl:
     "https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
-    like: 0,
+  like: 0,
 };
 
 const ForumQues: React.FC = () => {
@@ -45,7 +45,7 @@ const ForumQues: React.FC = () => {
 
       <div className="bodyForumQues">
         <div className="rateBtn">
-        <RateButton initialRating={sampleProps.like} />
+          <RateButton initialRating={sampleProps.like} />
         </div>
         <div className="bodyForumQuesContent">
           <p>{sampleProps.content}</p>

@@ -1,9 +1,9 @@
-// Article.tsx
-import "./article.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./article.css"
 
-// Define the interface for the article data
 interface ArticleData {
+  id: number;
   title: string;
   author: string;
   publicationDate: string;
@@ -11,35 +11,80 @@ interface ArticleData {
   imageUrl: string;
 }
 
-// Create a sample data set
-const sampleData: ArticleData = {
-  title: "Sample Paper Title",
-  author: "Sample Author",
-  publicationDate: "January 1, 2023",
-  content:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  imageUrl:
-    "https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
-};
+interface ArticleID {
+  discussionId: string;
+}
 
-const Article: React.FC = () => {
-  // Use the sample data within the component
+const ArticleContainer: React.FC<ArticleID> = ({ discussionId }) => {
+  console.log("Discussion ID:", discussionId);
+
+
+  const [articleData, setArticleData] = useState<ArticleData | null>(null);
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [publicationDate, setPublicationDate] = useState("");
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
+  const api = `https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/posts/${discussionId}`;
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(api, {
+          method: "GET",
+          headers: {
+            'Accept': "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setArticleData(data.post);
+          setTitle(data.post.title);
+          setAuthor("Chang Chang");
+          setPublicationDate(data.post.created_at);
+          setContent(data.post.body);
+        } else {
+          console.error("Error fetching post:", response.status);
+          setArticleData(null); // Clear the data in case of an error
+        }
+      } catch (error) {
+        console.error("Error fetching post:", error);
+        setArticleData(null); // Clear the data in case of an error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (discussionId) {
+      fetchPost();
+    }
+  }, [discussionId, api]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!articleData) {
+    return <div className="failed">Post not found</div>;
+  }
+
   return (
     <div className="fullArticle">
       <div className="headArticle">
-        <h1>{sampleData.title}</h1>
+        <h1>{title}</h1>
         <div className="author publicationDate">
-          <p>By {sampleData.author}</p>
-          <p>{sampleData.publicationDate}</p>
+          <p>By {author}</p>
+          <p>{publicationDate}</p>
         </div>
       </div>
 
       <div className="bodyArticle">
-        <p>{sampleData.content}</p>
-        <img className="img" src={sampleData.imageUrl} alt="image" />
+        <p>{content}</p>
       </div>
     </div>
   );
 };
 
-export default Article;
+export default ArticleContainer;

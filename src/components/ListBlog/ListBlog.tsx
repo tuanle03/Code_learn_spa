@@ -40,7 +40,7 @@ const ListBlog: React.FC<ListBlogProps> = ({ option }) => {
             body: post.body,
             img: "https://scontent.fhan3-2.fna.fbcdn.net/v/t39.30808-6/412912321_375065851718828_6609954758195566548_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=107&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=QLdIC7FBavcAX-msFgT&_nc_ht=scontent.fhan3-2.fna&oh=00_AfAX5YvnTUvUDmazRTtZv_xQ774Pgb2y7f4Oz3BZGEmR5g&oe=65873C4A",
             date: post.created_at,
-            url: `/${post.id}`,
+            url: `/article/${post.slug}`,
           }));
 
           setBlogs(formattedBlogs);

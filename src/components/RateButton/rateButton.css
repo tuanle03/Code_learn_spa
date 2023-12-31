@@ -1,5 +1,23 @@
 .rateButtonContainer {
-    height: 100px;
-    width: 100px;
-    padding: 500px;
+    width: 90px;
+    border-radius: 10px;
+    background-color: #f9d1d1;
+    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.3) !important;
+    padding: 5px 0px 5px 5px;
+    position: absolute;
+    z-index: 100;
+}
+
+.ratingDisplay {
+    color: #0b1354;
+}
+
+.btnUpDown {
+    display: flex;
+    gap: 25px;
+}
+
+.twoBtn {
+    border-color: #f9d1d1;
+    border-radius: 10px;
 }

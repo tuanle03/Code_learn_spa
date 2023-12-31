@@ -3,7 +3,7 @@
 /* Style for the entire article container */
 .fullArticle {
     width: 70%;
-    margin: 50px 50px 10px 70px;
+    margin: 100px 50px 10px 70px;
   }
   
   /* Style for the header section of the article */
@@ -38,3 +38,6 @@
   
   /* Add more styles as needed */
   
+  .failed{
+    margin-top: 100px;
+  }

@@ -1,0 +1,40 @@
+.Topic{
+    background-color: white;
+    width: 80%;
+    border-top: #F765A3 1px solid;
+    display: flex;
+    justify-content: start;
+    padding-top: 20px;
+    margin: 20px 0px 0px 100px;
+  }
+  
+  .Topic .content{
+    color: black;
+  }
+  
+  .Topic .header{
+    background: linear-gradient(to bottom, #0B1354, #F765A3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-bottom: 10px;
+  }
+  
+  .Topic .title{
+    color: transparent;
+    font-size: 1.5em;
+  }
+  
+  .Topic .date{
+    font-style: italic;
+  }
+  
+  .Topic .text{
+    padding-bottom: 10px;
+  }
+  
+  .Topic .see_more{
+    color: #0B1354;
+    font-weight: bold;
+  }
+  

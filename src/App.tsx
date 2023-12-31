@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import SignIn from "./Pages/SignIn/SignIn";
@@ -9,6 +8,9 @@ import ChangeProfile from "./Pages/ChangeProfile/ChangeProfile";
 import UploadAvatar from "./components/UploadAvatar/UploadAvatar";
 import Answer from "./components/Answer/Answer";
 import Question from "./components/Question/Question";
+import PaperPage from "./Pages/PaperPage/PaperPage";
+import TopicPage from "./Pages/TopicPage/TopicPage";
+import ForumPage from "./Pages/ForumPage/ForumPage";
 
 const App = () => {
   return (
@@ -22,10 +24,12 @@ const App = () => {
         <Route path="/change_avatar" element={<UploadAvatar />} />
         <Route path="/answer/:id" element={<Answer />} />
         <Route path="/ask" element={<Question />} />
+        <Route path="/topic" element={<TopicPage />} />
+        <Route path="/forum" element={<ForumPage />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
 
-       
-        {/* <Route path="/article/:id" element={<Article />} /> */}
+        <Route path="/article/:id" element={<PaperPage />} />
+        <Route path="/forum/:id" element={<ForumPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

@@ -2,7 +2,7 @@
 
 .commentContainer {
   width: 70%;
-  margin: 0px 50px 10px 70px;
+  margin: 100px 50px 10px 70px;
 }
   
 .headComment {
@@ -61,6 +61,7 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    outline: none;
   }
 
   .addCommentContainer p {

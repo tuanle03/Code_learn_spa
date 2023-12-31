@@ -55,7 +55,6 @@ function Account({ avatar, username }: HeaderProps) {
       }
     } catch (error) {
       console.error("Error during sign-out:", error);
-      alert("Error. Try again");
     }
   };
 
@@ -77,7 +76,7 @@ function Account({ avatar, username }: HeaderProps) {
 
 const Header = () => {
   const [signIn, setSignIn] = useState(false);
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState("/src/assets/avatar.png");
   const [username, setUsername] = useState("");
   const [token, setToken] = useState('');
 
@@ -113,7 +112,7 @@ const Header = () => {
             const data = await response.json();
             setSignIn(data.success);
             if (data.success) {
-              setAvatar(data.user.avatar_url || "");
+              setAvatar(data.user.avatar_url || "/src/assets/avatar.png");
               setUsername(data.user.last_name || "");
             }
           } else {
@@ -126,8 +125,8 @@ const Header = () => {
     };
 
     fetchData();
-  }, [token]); // Add token to the dependency array
-
+  }, [token]);
+  
   const [active, setActive] = useState("menu");
   const navToggle = () => {
     setActive((prevActive) =>
@@ -149,15 +148,15 @@ const Header = () => {
           {signIn ? (
             <>
               <Account avatar={avatar} username={username} />
-              <a className="forum" href="https://www.google.com">
+              <Link className="forum" to="/forum">
                 Forum
-              </a>
+              </Link>
             </>
           ) : (
             <>
-              <a className="forum" href="https://www.google.com">
+              <Link className="forum" to="/forum">
                 Forum
-              </a>
+              </Link>
               <Link className="signIn btn" to="/sign_in">
                 Sign in
               </Link>

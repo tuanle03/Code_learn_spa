@@ -44,29 +44,24 @@ const PaperPage: React.FC = () => {
       }
     };
 
-    fetchPost();
+    if (id) {
+      fetchPost();
+    }
   }, [id]);
-
-  if (!post) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
-      <Header signIn={false} avatar="" username="" />
-      <Article
-        title={post.title}
-        author="Sample Author" // You can replace this with the actual author data
-        publicationDate={post.created_at}
-        content={post.body}
-        imageUrl="https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg"
-      />
-      <Comment
-        avatar="https://mcdn.coolmate.me/image/April2023/meme-ech-xanh-9.jpg"
-        comment="Sample Comment Text"
-        initialLike={0}
-        commentCount={1}
-      />
+      <Header />
+      {post && <Article discussionId={id ?? ''} />}
+
+      {post && (
+        <Comment
+          avatar="https://mcdn.coolmate.me/image/April2023/meme-ech-xanh-9.jpg"
+          comment="Sample Comment Text"
+          initialLike={0}
+          commentCount={1}
+        />
+      )}
       <Footer />
     </>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import "./topic.css";
 
 interface TopicProps {
+  option: string;
   content: string;
   title: string;
   date: string;

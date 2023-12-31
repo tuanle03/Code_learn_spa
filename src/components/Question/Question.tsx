@@ -4,10 +4,15 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./question.css";
 
-const Question = () => {
+interface QuestionProps{
+  option: string;
+}
+
+const Question:React.FC<QuestionProps> = ({ option }) => {
   const [summary, setSummary] = useState("");
   const [editorState, setEditorState] = useState("");
   const [tags, setTags] = useState("");
+  const [token, setToken] = useState('');
   const nav = useNavigate();
 
   const handleSummaryChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +32,9 @@ const Question = () => {
     nav("/");
   };
   const handleClose = () => {
-    nav("/");
+    nav("/topic");
   };
-
+  
   return (
     <div className="question-label-container">
       <h3>Summarize your problem</h3>

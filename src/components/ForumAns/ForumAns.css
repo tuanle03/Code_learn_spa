@@ -98,6 +98,16 @@
       background-color: white;
     }
   
+    .addForumAnsContainer button i {
+        display: flex;
+        justify-content: center;
+        padding: 1% 1% 1% 1%;
+        background: linear-gradient(to right, #0B1354, #F765A3);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
     .addForumAnsContainer textarea {
       width: 100%;
       margin-right: 10px;

@@ -56,10 +56,7 @@ const PaperPage: React.FC = () => {
 
       {post && (
         <Comment
-          avatar="https://mcdn.coolmate.me/image/April2023/meme-ech-xanh-9.jpg"
-          comment="Sample Comment Text"
-          initialLike={0}
-          commentCount={1}
+          id={id ?? ""}
         />
       )}
       <Footer />

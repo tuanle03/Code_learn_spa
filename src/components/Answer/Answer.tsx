@@ -70,7 +70,7 @@ const Answer = () => {
   };
 
   const handleClose = () => {
-    nav("/");
+    nav("/forum/" + id);
   };
 
   return (

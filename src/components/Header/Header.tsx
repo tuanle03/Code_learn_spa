@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
 import "./header.css";
@@ -16,19 +16,19 @@ function Account({ avatar, username }: HeaderProps) {
     );
   };
   const nav = useNavigate();
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   const SignOut = async () => {
     try {
       const cookies = document.cookie;
-      const cookieArray = cookies.split('; ');
+      const cookieArray = cookies.split("; ");
       const tokenCookie = cookieArray.find((cookie) =>
-        cookie.startsWith('Token=')
+        cookie.startsWith("Token=")
       );
       document.cookie = `Token=`;
 
       if (tokenCookie) {
-        const tokenValue = tokenCookie.split('=')[1];
+        const tokenValue = tokenCookie.split("=")[1];
         setToken(tokenValue);
 
         const response = await fetch(
@@ -36,10 +36,11 @@ function Account({ avatar, username }: HeaderProps) {
           {
             method: "DELETE",
             headers: {
-              'Accept': "application/json",
-              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-              'Cache-Control': "no-cache, no-store, must-revalidate",
-              'Token': tokenValue,
+              Accept: "application/json",
+              "Content-Type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
+              "Cache-Control": "no-cache, no-store, must-revalidate",
+              Token: tokenValue,
             },
           }
         );
@@ -78,19 +79,19 @@ const Header = () => {
   const [signIn, setSignIn] = useState(false);
   const [avatar, setAvatar] = useState("/src/assets/avatar.png");
   const [username, setUsername] = useState("");
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const cookies = document.cookie;
-        const cookieArray = cookies.split('; ');
+        const cookieArray = cookies.split("; ");
         const tokenCookie = cookieArray.find((cookie) =>
-          cookie.startsWith('Token=')
+          cookie.startsWith("Token=")
         );
 
         if (tokenCookie) {
-          const tokenValue = tokenCookie.split('=')[1];
+          const tokenValue = tokenCookie.split("=")[1];
           setToken(tokenValue);
 
           const response = await fetch(
@@ -98,10 +99,11 @@ const Header = () => {
             {
               method: "GET",
               headers: {
-                'Accept': "application/json",
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                'Cache-Control': "no-cache, no-store, must-revalidate",
-                "Token": tokenValue
+                Accept: "application/json",
+                "Content-Type":
+                  "application/x-www-form-urlencoded; charset=UTF-8",
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                Token: tokenValue,
               },
             }
           );
@@ -126,7 +128,7 @@ const Header = () => {
 
     fetchData();
   }, [token]);
-  
+
   const [active, setActive] = useState("menu");
   const navToggle = () => {
     setActive((prevActive) =>
@@ -148,13 +150,13 @@ const Header = () => {
           {signIn ? (
             <>
               <Account avatar={avatar} username={username} />
-              <Link className="forum" to="/forum">
+              <Link className="topicPage" to="/topic">
                 Forum
               </Link>
             </>
           ) : (
             <>
-              <Link className="forum" to="/forum">
+              <Link className="topicPage" to="/topic">
                 Forum
               </Link>
               <Link className="signIn btn" to="/sign_in">

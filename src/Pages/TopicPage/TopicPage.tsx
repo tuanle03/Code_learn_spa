@@ -10,7 +10,7 @@ import Header from "../../components/Header/Header.tsx";
 import Footer from "../../components/Footer/Footer.tsx";
 
 interface Discussion {
-  id: number;
+  slug: string;
   content: string;
   title: string;
   date: string;
@@ -54,7 +54,7 @@ const TopicPage: React.FC<TopicPageProps> = ({ option }) => {
 
         if (data.success) {
           const formattedTopics = data.discussions.map((discussion: any) => ({
-            id: discussion.id,
+            slug: discussion.slug,
             content: discussion.content,
             title: discussion.title,
             date: discussion.date,
@@ -96,6 +96,7 @@ const TopicPage: React.FC<TopicPageProps> = ({ option }) => {
     <>
       <Header />
       <div className="searchBar">
+        <span className="header">Welcome to Forum</span>
         <Search />
       </div>
 
@@ -109,12 +110,12 @@ const TopicPage: React.FC<TopicPageProps> = ({ option }) => {
       <div className="topic">
         {discussions.map((discussion) => (
           <NavLink
-            key={discussion.id}
-            to={`/forum/${discussion.id}`}
+            key={discussion.slug}
+            to={`/forum/${discussion.slug}`}
             className="nav-link"
           >
             <Topic
-              key={discussion.id.toString()}
+              key={discussion.slug}
               option={option}
               title={discussion.title}
               date={discussion.date}

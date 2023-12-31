@@ -96,6 +96,7 @@ const TopicPage: React.FC<TopicPageProps> = ({ option }) => {
     <>
       <Header />
       <div className="searchBar">
+        <span className="header">Welcome to Forum</span>
         <Search />
       </div>
 

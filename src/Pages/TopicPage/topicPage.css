@@ -1,5 +1,16 @@
-.searchBar {
-    margin: 0px 0px 100px 0px;
+.searchBar .header {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #0B1354, #F765A3); /* Màu chữ gradient từ trái sang phải */
+    -webkit-background-clip: text;
+    color: transparent; /* Màu chữ trở nên trong suốt để hiển thị màu gradient từ background */
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    font-weight: bold;
+    font-size: 3em; /* Đặt kích thước chữ lớn hơn */
+    margin-top: 100px;
+    z-index: 1;
 }
 
 .SortAndAskQues {

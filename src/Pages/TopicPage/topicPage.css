@@ -11,6 +11,10 @@
     font-size: 2.5em; 
     margin-top: 100px;
     z-index: 1;
+.searchBar {
+    margin: 0px 0px 100px 0px;
+    /* padding: 0 !important; */
+    /* margin: 0 !important; */
 }
 
 .SortAndAskQues {

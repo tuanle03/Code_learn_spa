@@ -26,7 +26,8 @@ const App = () => {
         <Route path="/topic" element={<TopicPage />} />
         <Route path="/forum" element={<ForumPage />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
-        <Route path="/ask" element={<Question />} />
+        <Route path="/question/:id"element={<Question option="id"/>} />
+        <Route path="/ask" element={<Question option="addQuestion"/>} />
 
         <Route path="/article/:id" element={<PaperPage />} />
         <Route path="/forum/:id" element={<ForumPage />} />

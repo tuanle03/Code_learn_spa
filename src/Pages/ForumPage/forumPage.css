@@ -1,0 +1,11 @@
+.addForumAnsContainer{
+    width: calc(70% - 20px);
+    margin: 15px 10px;
+
+}
+.addForumAnsContainer >*{
+    outline: none;
+}
+.sendAnswerBtn{
+    cursor: pointer;
+}

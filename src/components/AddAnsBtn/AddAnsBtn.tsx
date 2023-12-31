@@ -1,15 +1,16 @@
 // AddAnsBtn.tsx
 import "./addAnsBtn.css";
+import { Link } from "react-router-dom";
 
-const AddAnsBtn = () => {
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
-
+interface AddAnsBtnProps{
+  id: string;
+}
+const AddAnsBtn: React.FC<AddAnsBtnProps> = ({id}) => {
+  var path = "/answer/" + id;
   return (
-    <button className="addAnsBtn" onClick={handleClick}>
+    <Link className="addAnsBtn" to={path}>
       Add Answer
-    </button>
+    </Link>
   );
 };
 

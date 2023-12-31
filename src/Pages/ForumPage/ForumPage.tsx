@@ -1,11 +1,12 @@
 // Trong file ForumPage.tsx
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ForumQues from "../../components/ForumQues/ForumQues.tsx";
 import ForumAns from "../../components/ForumAns/ForumAns.tsx";
 import Header from "../../components/Header/Header.tsx";
 import Footer from "../../components/Footer/Footer.tsx";
 import { useParams } from "react-router-dom";
 import "./forumPage.css";
+
 interface ForumQuesProps {
   title: string;
   author: string;
@@ -14,6 +15,7 @@ interface ForumQuesProps {
   content: string;
   like: number;
 }
+
 interface AnswerProps {
   author: string;
   publicationDate: string;
@@ -24,8 +26,7 @@ interface AnswerProps {
 
 const ForumPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [token, setToken] = useState('');
-
+  const [token, setToken] = useState("");
   const [post, setPost] = useState<ForumQuesProps>({
     title: "",
     author: "",
@@ -34,14 +35,16 @@ const ForumPage: React.FC = () => {
     content: "",
     like: 0,
   });
+  const [newForumAns, setNewForumAns] = useState("");
+  const [answers, setAnswers] = useState<AnswerProps[]>([]);
+  const [commentCount, setCommentCount] = useState(0);
 
-  if (id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       fetchData(id);
       fetchComment(id);
-    }, [id]);
-  }
-  
+    }
+  }, [id]);
 
   const fetchData = async (discussionId: string) => {
     try {
@@ -59,15 +62,18 @@ const ForumPage: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Discussion data:", data);
+
+        const author = data.discussion.user ? data.discussion.user.name : "Unknown Author";
+
         setPost({
-          title: data.title,
-          content: data.content,
-          author: data.user.name,
-          publicationDate: data.created_at,
+          title: data.discussion.title,
+          content: data.discussion.content,
+          author: author,
+          publicationDate: data.discussion.created_at,
           view: 1,
-          like: 0
+          like: 0,
         });
-              } else {
+      } else {
         console.error("Đã có lỗi khi gọi API:", response.statusText);
       }
     } catch (error: any) {
@@ -75,59 +81,57 @@ const ForumPage: React.FC = () => {
     }
   };
 
-  const [newForumAns, setNewForumAns] = useState("");
-  const handleForumAnsChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
+  const handleForumAnsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewForumAns(event.target.value);
   };
 
   const addForumAns = async (discussionId: string) => {
-    try{
+    try {
       const cookies = document.cookie;
-      const cookieArray = cookies.split('; ');
-      const tokenCookie = cookieArray.find(cookie => cookie.startsWith('Token='));
+      const cookieArray = cookies.split("; ");
+      const tokenCookie = cookieArray.find((cookie) => cookie.startsWith("Token="));
 
       if (tokenCookie) {
-        const tokenValue = tokenCookie.split('=')[1];
+        const tokenValue = tokenCookie.split("=")[1];
         setToken(tokenValue);
-      
-      const formData = new URLSearchParams();
-      formData.append("content", newForumAns);
 
-      const response = await fetch("https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/discussions/" + discussionId + "/comments", 
-      {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-            "Token": tokenValue
-        },
-        body: formData.toString(),
-      });
-      console.log("Response Status Code:", response.status);
-      const responseData = await response.json();
-      if (response.ok) {
-        console.log("Post successful");
-      } else {
-        console.error("Update failed:", response.statusText);
-        alert(responseData.errors);
+        const formData = new URLSearchParams();
+        formData.append("content", newForumAns);
+
+        const response = await fetch(
+          `https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/discussions/${discussionId}/comments`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              Token: tokenValue,
+            },
+            body: formData.toString(),
+          }
+        );
+
+        console.log("Response Status Code:", response.status);
+        const responseData = await response.json();
+        if (response.ok) {
+          console.log("Post successful");
+          setNewForumAns("");
+          window.location.reload();
+        } else {
+          console.error("Update failed:", response.statusText);
+          alert(responseData.errors);
+        }
       }
+    } catch (error) {
+      console.error("Error during post:", error);
+      alert("Error. Try again");
     }
-  }
- catch (error) {
-  console.error("Error during post:", error);
-  alert("Error. Try again");
-}
-  }
-  const [answers, setAnswers] = useState<AnswerProps[]>([]);
-  const [commnetCount, setCommentCount] =useState(0);
+  };
+
   const fetchComment = async (discussionId: string) => {
     try {
       const response = await fetch(
-        "https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/discussions/" +
-          id +
-          "/comments",
+        `https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/discussions/${id}/comments`,
         {
           method: "GET",
           headers: {
@@ -137,19 +141,18 @@ const ForumPage: React.FC = () => {
           },
         }
       );
-  
+
       const data = await response.json();
-  
-      if (data.success) {
+
+      if (response.ok && data.success) {
         const formattedAnswers = data.comments.map((comment: any) => ({
-          author: comment.user.name,
+          author: comment.user?.name || "Unknown Author",
           publicationDate: comment.created_at,
-          avatar: comment.user.avatar_url || "/src/assets/avatar.png",
+          avatar: comment.user?.avatar_url || "/src/assets/avatar.png",
           ForumAns: comment.content,
           initialLike: 0,
         }));
-        
-  
+
         setAnswers(formattedAnswers);
         setCommentCount(1);
       } else {
@@ -159,25 +162,33 @@ const ForumPage: React.FC = () => {
       console.error("Error fetching Comment data:", error);
       alert("error");
     }
-  };  
+  };
 
   return (
     <>
       <Header />
-      <ForumQues />
+      <ForumQues
+        title={post.title}
+        author={post.author}
+        publicationDate={post.publicationDate}
+        view={post.view}
+        content={post.content}
+        like={post.like}
+      />
       <div>
-      <h1>Answers</h1>
-        {commnetCount === 1 && answers.map((answer, index) => (
-          <ForumAns
-            key={index} // Ensure to set a unique key for each item in the array
-            ForumAns={answer.ForumAns}
-            initialLike={answer.initialLike}
-            author={answer.author}
-            publicationDate={answer.publicationDate}
-            avatar={answer.avatar}
-            id = {id ?? ""}
-          />
-        ))} 
+        <h1 className="AnsText">Answers</h1>
+        {commentCount === 1 &&
+          answers.map((answer, index) => (
+            <ForumAns
+              key={index}
+              ForumAns={answer.ForumAns}
+              initialLike={answer.initialLike}
+              author={answer.author}
+              publicationDate={answer.publicationDate}
+              avatar={answer.avatar}
+              id={id ?? ""}
+            />
+          ))}
       </div>
       <div className="addForumAnsContainer">
         <textarea

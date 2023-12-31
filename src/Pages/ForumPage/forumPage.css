@@ -9,3 +9,6 @@
 .sendAnswerBtn{
     cursor: pointer;
 }
+.AnsText{
+    margin: 15px 10px;
+}

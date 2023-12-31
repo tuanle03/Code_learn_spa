@@ -14,44 +14,32 @@ interface ForumQuesProps {
   like: number;
 }
 
-// Create a sample data set
-const sampleProps: ForumQuesProps = {
-  title: "Sample Question",
-  author: "Sample Author",
-  publicationDate: "January 1, 2023",
-  view: 0,
-  content:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  like: 0,
-};
-
 const ForumQues: React.FC<ForumQuesProps> = ({ title, author, publicationDate, view, content, like }) => {
 
   return (
     <div className="fullForumQues">
       <div className="headForumQues">
         <h1>
-          {sampleProps.title} <AddQuesBtn />
+          {title} <AddQuesBtn />
         </h1>
         <div className="authorAndPublicationDate">
-          <p>By {sampleProps.author}</p>
-          <p>{sampleProps.publicationDate}</p>
-          <p>View {sampleProps.view}</p>
+          <p>By {author}</p>
+          <p>{publicationDate}</p>
+          <p>View {view}</p>
         </div>
       </div>
 
       <div className="bodyForumQues">
         <div className="rateBtn">
-          <RateButton initialRating={sampleProps.like} />
+          <RateButton initialRating={like} />
         </div>
         <div className="bodyForumQuesContent">
-          <p>{sampleProps.content}</p>
+          <p>{content}</p>
         </div>
       </div>
     </div>
   );
 };
 
-ForumQues.defaultProps = sampleProps;
 
 export default ForumQues;

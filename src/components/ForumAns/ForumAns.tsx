@@ -104,7 +104,9 @@ const ForumAns: React.FC<ForumAnsProps> = ({
               onChange={handleForumAnsChange}
               placeholder="Enter your comment..."
             />
-            <button onClick={addForumAns}>💅🏻</button>
+            <button onClick={addForumAns}>
+              <i className="fi fi-rr-paper-plane submit"></i>
+            </button>
           </div>
         </div>
       </div>

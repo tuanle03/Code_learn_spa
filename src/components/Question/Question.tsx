@@ -8,6 +8,7 @@ const Question = () => {
   const [summary, setSummary] = useState("");
   const [editorState, setEditorState] = useState("");
   const [tags, setTags] = useState("");
+  const [token, setToken] = useState('');
   const nav = useNavigate();
 
   const handleSummaryChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,14 +23,51 @@ const Question = () => {
     setTags(e.target.value);
   };
 
-  const handlePost = () => {
-    console.log("Post...");
-    nav("/");
-  };
-  const handleClose = () => {
-    nav("/");
-  };
+  const handlePost = async() => {
+      try{
+      const cookies = document.cookie;
+      const cookieArray = cookies.split('; ');
+      const tokenCookie = cookieArray.find(cookie => cookie.startsWith('Token='));
 
+      if (tokenCookie) {
+        const tokenValue = tokenCookie.split('=')[1];
+        setToken(tokenValue);
+      
+      const formData = new URLSearchParams();
+      formData.append("content", editorState);
+      formData.append("title", summary);
+
+      const response = await fetch("https://codelearn-api-72b30d70ca73.herokuapp.com/api/web/discussions", 
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "Token": tokenValue
+        },
+        body: formData.toString(),
+      });
+      console.log("Response Status Code:", response.status);
+      const responseData = await response.json();
+      if (response.ok) {
+        console.log("Post successful");
+        nav("/topic");
+      } else {
+        console.error("Update failed:", response.statusText);
+        alert(responseData.errors);
+      }
+    }
+  }
+ catch (error) {
+  console.error("Error during post:", error);
+  alert("Error. Try again");
+}
+
+  }
+  const handleClose = () => {
+    nav("/topic");
+  };
+  
   return (
     <div className="question-label-container">
       <h3>Summarize your problem</h3>

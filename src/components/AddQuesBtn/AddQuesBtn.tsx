@@ -1,15 +1,11 @@
-// AddQuesBtn.tsx
 import "./addQuesBtn.css";
+import { Link } from "react-router-dom";
 
 const AddQuesBtn = () => {
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
-
   return (
-    <button className="addQuesBtn" onClick={handleClick}>
+    <Link className="addQuesBtn" to="/ask">
       Ask Question
-    </button>
+    </Link>
   );
 };
 

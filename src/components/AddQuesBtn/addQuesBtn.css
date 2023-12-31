@@ -7,4 +7,9 @@
     background-color: #f9d1d1 !important;
     border-radius: 10px;
     padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: medium !important;
+    font-weight: bold !important;
 }

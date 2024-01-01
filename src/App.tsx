@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/profile" element={<ChangeProfile />} />
         <Route path="/change_avatar" element={<UploadAvatar />} />
         <Route path="/answer/:id" element={<Answer />} />
-        <Route path="/topic" element={<TopicPage />} />
+        <Route path="/topic" element={<TopicPage option="mostView"/>} />
         <Route path="/forum" element={<ForumPage />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
         <Route path="/question/:id"element={<Question option="id"/>} />
@@ -31,7 +31,7 @@ const App = () => {
 
         <Route path="/article/:id" element={<PaperPage />} />
         <Route path="/forum/:id" element={<ForumPage />} />
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );

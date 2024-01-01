@@ -2,6 +2,7 @@ import { useState, ReactElement } from "react";
 import "./chatGPT.css";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { MessageType } from "@chatscope/chat-ui-kit-react";
+import dotenv from 'dotenv';
 import {
   MainContainer,
   ChatContainer,
@@ -11,7 +12,7 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-// const API_KEY: string = "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";
+
 
 interface ChatMessage {
   message: string;
@@ -20,7 +21,10 @@ interface ChatMessage {
 }
 
 function ChatGPT(): ReactElement {
+  dotenv.config();
 
+  // Lấy giá trị của biến môi trường REACT_APP_API_KEY
+  const API_KEY = process.env.REACT_APP_API_KEY;
   const [chat, setChat] = useState("hiddenChat");
   const [app, setApp] = useState("hiddenApp");
 

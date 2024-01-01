@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Blog from '../ShortBlog/Blog';
-import './mostView.css';
+import React, { useEffect, useState } from "react";
+import Blog from "../ShortBlog/Blog";
+import "./mostView.css";
 
 interface Blog {
   id: number;
   title: string;
   body: string;
   img: string;
-  date: string; 
+  date: string;
   url: string;
 }
 
@@ -21,9 +21,9 @@ const MostView = () => {
       {
         method: "GET",
         headers: {
-          'Accept': "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
-          "Cache-Control": "no-cache, no-store, must-revalidate"
+          "Cache-Control": "no-cache, no-store, must-revalidate",
         },
       }
     )
@@ -34,7 +34,7 @@ const MostView = () => {
             id: post.id,
             title: post.title,
             body: post.body,
-            img: "https://scontent.fhan3-2.fna.fbcdn.net/v/t39.30808-6/412912321_375065851718828_6609954758195566548_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=107&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=QLdIC7FBavcAX-msFgT&_nc_ht=scontent.fhan3-2.fna&oh=00_AfAX5YvnTUvUDmazRTtZv_xQ774Pgb2y7f4Oz3BZGEmR5g&oe=65873C4A",
+            img: "https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
             date: post.created_at,
             url: `/article/${post.slug}`,
           }));
@@ -68,25 +68,57 @@ const MostView = () => {
   };
 
   return (
-    <div className='MostView'>
+    <div className="MostView">
       <h1>Most view</h1>
-      <div className='laptopBlogs'>
-        <Blog id={blogs[0].id} title={blogs[0].title} body={blogs[0].body} url={blogs[0].url} date={blogs[0].date} img={blogs[0].img} />
-        <Blog id={blogs[1].id} title={blogs[1].title} body={blogs[1].body} url={blogs[1].url} date={blogs[1].date} img={blogs[1].img} />
-        <Blog id={blogs[2].id} title={blogs[2].title} body={blogs[2].body} url={blogs[2].url} date={blogs[2].date} img={blogs[2].img} />
+      <div className="laptopBlogs">
+        <Blog
+          id={blogs[0].id}
+          title={blogs[0].title}
+          body={blogs[0].body}
+          url={blogs[0].url}
+          date={blogs[0].date}
+          img={blogs[0].img}
+        />
+        <Blog
+          id={blogs[1].id}
+          title={blogs[1].title}
+          body={blogs[1].body}
+          url={blogs[1].url}
+          date={blogs[1].date}
+          img={blogs[1].img}
+        />
+        <Blog
+          id={blogs[2].id}
+          title={blogs[2].title}
+          body={blogs[2].body}
+          url={blogs[2].url}
+          date={blogs[2].date}
+          img={blogs[2].img}
+        />
       </div>
-      <div className='mobileBlogs'>
+      <div className="mobileBlogs">
         {blogs.map((blog, i) => (
           <span
             key={i}
-            className={`dot ${i === index ? 'active' : ''}`}
+            className={`dot ${i === index ? "active" : ""}`}
             onClick={() => changeBlog(i)}
           ></span>
         ))}
-        <Blog id={blogs[index].id} title={blogs[index].title} body={blogs[index].body} url={blogs[index].url} date={blogs[index].date} img={blogs[index].img} />
-        <div className='arrow'>
-          <div className='prev' onClick={prevBlog}>{'<'}</div>
-          <div className='next' onClick={nextBlog}>{'>'}</div>
+        <Blog
+          id={blogs[index].id}
+          title={blogs[index].title}
+          body={blogs[index].body}
+          url={blogs[index].url}
+          date={blogs[index].date}
+          img={blogs[index].img}
+        />
+        <div className="arrow">
+          <div className="prev" onClick={prevBlog}>
+            {"<"}
+          </div>
+          <div className="next" onClick={nextBlog}>
+            {">"}
+          </div>
         </div>
       </div>
     </div>

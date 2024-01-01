@@ -63,7 +63,9 @@ const ForumPage: React.FC = () => {
         const data = await response.json();
         console.log("Discussion data:", data);
 
-        const author = data.discussion.user ? data.discussion.user.name : "Unknown Author";
+        const author = data.discussion.user
+          ? data.discussion.user.name
+          : "Unknown Author";
 
         setPost({
           title: data.discussion.title,
@@ -81,7 +83,9 @@ const ForumPage: React.FC = () => {
     }
   };
 
-  const handleForumAnsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleForumAnsChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setNewForumAns(event.target.value);
   };
 
@@ -89,7 +93,9 @@ const ForumPage: React.FC = () => {
     try {
       const cookies = document.cookie;
       const cookieArray = cookies.split("; ");
-      const tokenCookie = cookieArray.find((cookie) => cookie.startsWith("Token="));
+      const tokenCookie = cookieArray.find((cookie) =>
+        cookie.startsWith("Token=")
+      );
 
       if (tokenCookie) {
         const tokenValue = tokenCookie.split("=")[1];
@@ -104,7 +110,8 @@ const ForumPage: React.FC = () => {
             method: "POST",
             headers: {
               Accept: "application/json",
-              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+              "Content-Type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
               Token: tokenValue,
             },
             body: formData.toString(),

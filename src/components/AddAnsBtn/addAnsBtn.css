@@ -1,7 +1,7 @@
 .addAnsBtn {
     width: 200px;
     height: 40px;
-    z-index: 100 !important;
+    z-index: 99 !important;
     color: #0b1354 !important;
     border-color: white !important;
     background-color: #f9d1d1 !important;
@@ -10,6 +10,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: medium !important;
-    font-weight: bold !important;
+    font-size: medium;
+    font-weight: bold;
 }

@@ -101,8 +101,10 @@ const TopicPage: React.FC<TopicPageProps> = ({ option }) => {
       </div>
 
       <div className="SortAndAskQues">
-        <SortDropDown onSortChange={handleSortChange} />
-        <div className="askQues">
+        <div className="sortDropDown">
+          <SortDropDown onSortChange={handleSortChange} />
+        </div>
+        <div className="askQuestion">
           <AddQuesBtn />
         </div>
       </div>

@@ -9,8 +9,10 @@
     justify-content: center; 
     font-weight: bold;
     font-size: 2.5em; 
-    margin-top: 100px;
+    margin-top: 90px;
     z-index: 1;
+}
+
 .searchBar {
     margin: 0px 0px 100px 0px;
     /* padding: 0 !important; */
@@ -19,10 +21,16 @@
 
 .SortAndAskQues {
     display: flex;
-    margin: 0px 300px 0px 200px;
+    justify-content: center;
 }
 
-.askQues {
+.SortAndAskQues .sortDropDown{
+    width: 50% !important;
+    display: flex;
+    align-content: start !important;
+}
+
+.SortAndAskQues .askQuestion{
     display: flex;
     align-items: end;
 }

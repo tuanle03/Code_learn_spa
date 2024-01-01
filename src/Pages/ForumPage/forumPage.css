@@ -10,5 +10,10 @@
     cursor: pointer;
 }
 .AnsText{
-    margin: 15px 10px;
+    margin: 15px 0px 10px 110px;
+    color: #0B1354;
+}
+
+.addForumAnsContainer{
+    margin-left: 110px;
 }

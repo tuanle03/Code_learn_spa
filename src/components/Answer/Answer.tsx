@@ -44,10 +44,10 @@ const Answer = () => {
         const response = await fetch(api, {
           method: "POST",
           headers: {
-            'Accept': "application/json",
+            Accept: "application/json",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-            'Cache-Control': "no-cache, no-store, must-revalidate",
-            'Token': tokenValue,
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            Token: tokenValue,
           },
           body: formData.toString(),
         });

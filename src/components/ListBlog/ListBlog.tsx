@@ -26,7 +26,7 @@ const ListBlog: React.FC<ListBlogProps> = ({ option }) => {
     fetch(api, {
       method: "GET",
       headers: {
-        'Accept': "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
         "Cache-Control": "no-cache, no-store, must-revalidate",
       },
@@ -38,7 +38,7 @@ const ListBlog: React.FC<ListBlogProps> = ({ option }) => {
             id: post.id,
             title: post.title,
             body: post.body,
-            img: "https://scontent.fhan3-2.fna.fbcdn.net/v/t39.30808-6/412912321_375065851718828_6609954758195566548_n.jpg?stp=cp6_dst-jpg_p720x720&_nc_cat=107&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=QLdIC7FBavcAX-msFgT&_nc_ht=scontent.fhan3-2.fna&oh=00_AfAX5YvnTUvUDmazRTtZv_xQ774Pgb2y7f4Oz3BZGEmR5g&oe=65873C4A",
+            img: "https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
             date: post.created_at,
             url: `/article/${post.slug}`,
           }));
